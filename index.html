@@ -3,168 +3,207 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080d16">
-  <meta name="description" content="PiruNet: servicios de internet ilimitado para Personal y Claro AR. Elegí tu plan y hacé tu pedido por WhatsApp.">
-  <title>PiruNet | Internet Ilimitado</title>
+  <meta name="theme-color" content="#090b12">
+  <meta name="description" content="PiruNet: planes de internet ilimitado Personal y Claro Argentina.">
+  <title>PiruNet | Internet ilimitado</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
 </head>
 <body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
   <header class="topbar">
-    <a href="#" class="brand" aria-label="PiruNet inicio">
-      <span class="brand-icon">P</span>
-      <span>Piru<span class="green">Net</span><small>INTERNET ILIMITADO</small></span>
+    <a class="brand" href="#">
+      <span class="brand-mark">P</span>
+      <span>Piru<span class="brand-accent">Net</span>
+        <small>INTERNET ILIMITADO</small>
+      </span>
     </a>
-    <button class="cart-button" id="open-cart" aria-label="Abrir carrito">
-      🛒 <span>Carrito</span>
-      <span class="cart-count" id="cart-count">0</span>
+
+    <button class="cart-shortcut" id="cartShortcut" type="button">
+      <span>Carrito</span>
+      <span class="cart-count" id="cartCount">0</span>
     </button>
   </header>
 
   <main>
     <section class="hero">
-      <div class="status"><span class="status-dot"></span> PLANES DISPONIBLES</div>
-      <h1>Tu conexión.<br><span class="green">A tu manera.</span></h1>
-      <p>Elegí tu plan de internet ilimitado para Personal o Claro AR y hacé tu pedido en unos pocos pasos.</p>
-      <a class="primary-button hero-button" href="#planes">Ver planes <span>↓</span></a>
-      <div class="hero-bottom">
-        <div><strong>2</strong><span>Redes disponibles</span></div>
-        <div><strong>3</strong><span>Planes para elegir</span></div>
-        <div><strong>100%</strong><span>Pedido online</span></div>
+      <div class="hero-copy reveal">
+        <span class="eyebrow"><i></i> CONECTATE A TU MANERA</span>
+        <h1>Internet sin límites.<br><span>A tu ritmo.</span></h1>
+        <p>
+          Elegí tu compañía y la duración de tu plan.
+          Pagá con Mercado Pago y confirmá tu compra por WhatsApp.
+        </p>
+        <a class="hero-link" href="#planes">Explorar planes <span>↓</span></a>
+      </div>
+
+      <div class="hero-orb reveal" aria-hidden="true">
+        <div class="orb-ring ring-a"></div>
+        <div class="orb-ring ring-b"></div>
+        <div class="orb-core">
+          <span class="signal">⌁</span>
+          <strong>24/7</strong>
+          <small>SIEMPRE CONECTADO</small>
+        </div>
+        <span class="float-chip chip-top">⚡ Atención personalizada</span>
+        <span class="float-chip chip-bottom">● Confirmación por WhatsApp</span>
       </div>
     </section>
 
-    <section class="plans section" id="planes">
-      <div class="section-heading">
-        <span class="eyebrow">ELEGÍ TU PLAN</span>
-        <h2>Internet para vos</h2>
-        <p>Seleccioná la duración y la compañía antes de agregar el servicio al carrito.</p>
-      </div>
-
-      <div class="network-selector">
-        <label for="network">Tu compañía</label>
-        <select id="network">
-          <option value="Personal">Personal</option>
-          <option value="Claro AR">Claro AR</option>
-        </select>
-      </div>
-
-      <div class="plan-grid">
-        <article class="plan-card">
-          <div class="plan-top">
-            <span class="plan-tag">SEMANAL</span>
-            <span class="plan-symbol">01</span>
-          </div>
-          <h3>7 días</h3>
-          <p class="plan-description">Ideal para probar el servicio.</p>
-          <div class="price">$3.000 <small>ARS</small></div>
-          <div class="plan-detail">Vigencia de 7 días</div>
-          <button class="add-button" data-days="7" data-price="3000">Agregar al carrito <span>＋</span></button>
-        </article>
-
-        <article class="plan-card featured">
-          <div class="popular-label">MÁS ELEGIDO</div>
-          <div class="plan-top">
-            <span class="plan-tag">QUINCENAL</span>
-            <span class="plan-symbol">02</span>
-          </div>
-          <h3>15 días</h3>
-          <p class="plan-description">Más tiempo para estar conectado.</p>
-          <div class="price">$4.500 <small>ARS</small></div>
-          <div class="plan-detail">Vigencia de 15 días</div>
-          <button class="add-button" data-days="15" data-price="4500">Agregar al carrito <span>＋</span></button>
-        </article>
-
-        <article class="plan-card">
-          <div class="plan-top">
-            <span class="plan-tag">MENSUAL</span>
-            <span class="plan-symbol">03</span>
-          </div>
-          <h3>30 días</h3>
-          <p class="plan-description">La opción para todo el mes.</p>
-          <div class="price">$6.000 <small>ARS</small></div>
-          <div class="plan-detail">Vigencia de 30 días</div>
-          <button class="add-button" data-days="30" data-price="6000">Agregar al carrito <span>＋</span></button>
-        </article>
-      </div>
-      <p class="notice">Los precios están expresados en pesos argentinos. Consultá la disponibilidad para tu línea antes de realizar el pago.</p>
-    </section>
-
-    <section class="how section">
-      <div class="section-heading">
-        <span class="eyebrow">SENCILLO Y RÁPIDO</span>
-        <h2>¿Cómo comprar?</h2>
-      </div>
-      <div class="steps">
-        <div class="step"><span>01</span><h3>Elegí tu plan</h3><p>Seleccioná Personal o Claro AR y la duración.</p></div>
-        <div class="step"><span>02</span><h3>Armá tu pedido</h3><p>Agregá tus planes al carrito y revisá el total.</p></div>
-        <div class="step"><span>03</span><h3>Confirmá por WhatsApp</h3><p>Enviá el pedido y coordiná el pago.</p></div>
-      </div>
-    </section>
-
-    <section class="contact-banner">
+    <section class="section-heading reveal" id="planes">
       <div>
-        <span class="eyebrow">¿TENÉS DUDAS?</span>
-        <h2>Estamos para ayudarte.</h2>
-        <p>Consultá disponibilidad y detalles antes de comprar.</p>
+        <span class="eyebrow">ELEGÍ TU PLAN</span>
+        <h2>Encontrá tu conexión</h2>
+        <p>Seleccioná un plan para agregarlo al carrito.</p>
       </div>
-      <a class="whatsapp-button" href="https://wa.me/5493844546841" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp ↗</a>
+      <div class="status-pill"><span></span> Personal y Claro Argentina</div>
+    </section>
+
+    <section class="provider-grid">
+      <article class="provider-card personal reveal" data-provider="Personal">
+        <div class="provider-top">
+          <span class="provider-icon">P</span>
+          <span class="provider-tag">ARGENTINA</span>
+        </div>
+        <h3>Personal</h3>
+        <p>Internet ilimitado</p>
+
+        <div class="plan-list">
+          <button class="plan-option" data-provider="Personal" data-days="7" data-price="3000">
+            <span><b>7 días</b><small>Plan semanal</small></span>
+            <strong>$3.000</strong><span class="add-symbol">+</span>
+          </button>
+          <button class="plan-option" data-provider="Personal" data-days="15" data-price="4500">
+            <span><b>15 días</b><small>Plan quincenal</small></span>
+            <strong>$4.500</strong><span class="add-symbol">+</span>
+          </button>
+          <button class="plan-option" data-provider="Personal" data-days="30" data-price="6000">
+            <span><b>30 días</b><small>Plan mensual</small></span>
+            <strong>$6.000</strong><span class="add-symbol">+</span>
+          </button>
+        </div>
+
+        <button class="provider-cta" data-provider-select="Personal">
+          Elegir Personal <span>↗</span>
+        </button>
+      </article>
+
+      <article class="provider-card claro reveal" data-provider="Claro">
+        <div class="provider-top">
+          <span class="provider-icon">C</span>
+          <span class="provider-tag">ARGENTINA</span>
+        </div>
+        <h3>Claro</h3>
+        <p>Internet ilimitado</p>
+
+        <div class="plan-list">
+          <button class="plan-option" data-provider="Claro" data-days="7" data-price="3000">
+            <span><b>7 días</b><small>Plan semanal</small></span>
+            <strong>$3.000</strong><span class="add-symbol">+</span>
+          </button>
+          <button class="plan-option" data-provider="Claro" data-days="15" data-price="4500">
+            <span><b>15 días</b><small>Plan quincenal</small></span>
+            <strong>$4.500</strong><span class="add-symbol">+</span>
+          </button>
+          <button class="plan-option" data-provider="Claro" data-days="30" data-price="6000">
+            <span><b>30 días</b><small>Plan mensual</small></span>
+            <strong>$6.000</strong><span class="add-symbol">+</span>
+          </button>
+        </div>
+
+        <button class="provider-cta" data-provider-select="Claro">
+          Elegir Claro <span>↗</span>
+        </button>
+      </article>
+    </section>
+
+    <section class="checkout-section reveal" id="carrito">
+      <div class="checkout-heading">
+        <div>
+          <span class="eyebrow">TU PEDIDO</span>
+          <h2>Carrito de compras</h2>
+        </div>
+        <span class="secure-note">✦ Compra coordinada</span>
+      </div>
+
+      <div class="checkout-grid">
+        <div class="cart-panel">
+          <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+              <span>＋</span>
+              <b>Tu carrito está vacío</b>
+              <small>Elegí un plan de Personal o Claro para comenzar.</small>
+            </div>
+          </div>
+          <div class="cart-total">
+            <span>Total del pedido</span>
+            <strong id="cartTotal">$0</strong>
+          </div>
+        </div>
+
+        <form class="buyer-panel" id="buyerForm">
+          <label for="buyerName">Tu nombre</label>
+          <input id="buyerName" name="buyerName" autocomplete="name"
+                 placeholder="Cómo te llamás" required>
+
+          <label for="buyerPhone">Tu WhatsApp</label>
+          <input id="buyerPhone" name="buyerPhone" inputmode="tel"
+                 autocomplete="tel" placeholder="Tu número con código de área" required>
+
+          <div class="payment-info">
+            <span class="payment-mark">M</span>
+            <div>
+              <b>Pagá con Mercado Pago</b>
+              <small>Después, mandanos el comprobante por WhatsApp.</small>
+            </div>
+          </div>
+
+          <button class="pay-button" id="payButton" type="submit" disabled>
+            Continuar con la compra <span>↗</span>
+          </button>
+
+          <button class="whatsapp-button" id="confirmWhatsapp" type="button" hidden>
+            Ya pagué · Confirmar por WhatsApp ↗
+          </button>
+
+          <p class="fine-print">
+            El pago se verifica manualmente antes de entregar o activar el servicio.
+            Revisá el importe antes de pagar. Nunca compartas claves ni códigos personales.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <section class="steps reveal">
+      <div class="step">
+        <span>01</span>
+        <b>Elegí tu plan</b>
+        <p>Seleccioná Personal o Claro y agregá los días que necesitás.</p>
+      </div>
+      <div class="step">
+        <span>02</span>
+        <b>Pagá tu pedido</b>
+        <p>Se abrirá Mercado Pago. Revisá el importe antes de realizar el pago.</p>
+      </div>
+      <div class="step">
+        <span>03</span>
+        <b>Confirmá por WhatsApp</b>
+        <p>Mandanos el resumen de compra y el comprobante para verificarlo.</p>
+      </div>
     </section>
   </main>
 
   <footer>
-    <a href="#" class="footer-brand">Piru<span class="green">Net</span></a>
-    <p>Internet a tu manera.</p>
+    <a class="brand footer-brand" href="#">
+      <span class="brand-mark">P</span>
+      <span>Piru<span class="brand-accent">Net</span><small>INTERNET ILIMITADO</small></span>
+    </a>
+    <p>Atención y confirmación de pago por WhatsApp.</p>
     <small>© <span id="year"></span> PiruNet. Todos los derechos reservados.</small>
-    <small class="disclaimer">PiruNet es un servicio independiente y no representa oficialmente a Personal ni a Claro.</small>
   </footer>
 
-  <div class="overlay" id="overlay"></div>
-
-  <aside class="cart-panel" id="cart-panel" aria-label="Carrito de compras" aria-hidden="true">
-    <div class="cart-header">
-      <div><span class="eyebrow">TU COMPRA</span><h2>Mi carrito</h2></div>
-      <button class="close-button" id="close-cart" aria-label="Cerrar carrito">✕</button>
-    </div>
-
-    <div class="cart-items" id="cart-items">
-      <div class="empty-cart"><span>🛒</span><h3>Tu carrito está vacío</h3><p>Agregá un plan para empezar tu pedido.</p></div>
-    </div>
-
-    <div class="cart-bottom">
-      <div class="total-line"><span>Total</span><strong id="cart-total">$0</strong></div>
-      <button class="primary-button checkout-button" id="go-checkout" disabled>Continuar con el pedido →</button>
-      <button class="text-button" id="continue-shopping">Seguir comprando</button>
-    </div>
-  </aside>
-
-  <section class="checkout-modal" id="checkout-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
-    <div class="modal-header">
-      <div><span class="eyebrow">ÚLTIMO PASO</span><h2 id="checkout-title">Datos del pedido</h2></div>
-      <button class="close-button" id="close-checkout" aria-label="Cerrar formulario">✕</button>
-    </div>
-    <p class="modal-description">Completá tus datos para preparar el mensaje de WhatsApp.</p>
-    <form id="checkout-form">
-      <label for="customer-name">Tu nombre</label>
-      <input id="customer-name" name="name" type="text" placeholder="¿Cómo te llamás?" autocomplete="name" required maxlength="70">
-
-      <label for="customer-phone">Tu WhatsApp</label>
-      <input id="customer-phone" name="phone" type="tel" placeholder="Ej.: 3844 123456" autocomplete="tel" required maxlength="25">
-
-      <label for="customer-notes">Detalles adicionales (opcional)</label>
-      <textarea id="customer-notes" name="notes" placeholder="Por ejemplo: consulta sobre mi línea..." rows="3" maxlength="300"></textarea>
-
-      <div class="payment-info">
-        <span>💳</span>
-        <div><strong>Pago por Mercado Pago</strong><p>El enlace de pago se incluirá en el mensaje para que puedas continuar.</p></div>
-      </div>
-
-      <div class="checkout-total"><span>Total del pedido</span><strong id="checkout-total">$0</strong></div>
-      <button class="primary-button checkout-button" type="submit">Enviar pedido por WhatsApp ↗</button>
-      <p class="fine-print">El pedido no queda confirmado hasta que coordines con el vendedor y se verifique el pago.</p>
-    </form>
-  </section>
-
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
 </body>
-      </html>
+  </html>
