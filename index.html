@@ -1,268 +1,154 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090a12">
-  <meta name="description" content="Contratá internet ilimitado Personal y Claro Argentina con PiruNet.">
-  <title>PiruNet | Internet Ilimitado</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070914">
+  <meta name="description" content="PiruNet: planes de internet ilimitado para Personal y Claro Argentina. Elegí tu plan y coordiná la activación por WhatsApp.">
+  <title>PiruNet | Internet ilimitado</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="glow glow-blue" aria-hidden="true"></div>
+  <div class="glow glow-cyan" aria-hidden="true"></div>
 
-  <header class="topbar">
-    <a class="brand" href="#inicio">
-      <span class="brand-icon">P</span>
-      <span>Piru<span class="brand-accent">Net</span></span>
+  <header class="header">
+    <a class="brand" href="#inicio" aria-label="PiruNet, inicio">
+      <span class="brand-symbol"><span>P</span><i></i></span>
+      <span class="brand-copy">Piru<span>Net</span><small>INTERNET ILIMITADO</small></span>
     </a>
-
-    <nav class="nav-links">
+    <nav class="nav">
       <a href="#planes">Planes</a>
-      <a href="#como-comprar">Cómo comprar</a>
+      <a href="#pasos">Cómo comprar</a>
     </nav>
-
-    <a class="cart-shortcut" href="#carrito" aria-label="Ir al carrito">
-      <span>🛒</span>
-      <span class="cart-shortcut-text">Carrito</span>
-      <span id="cart-count" class="cart-count">0</span>
-    </a>
+    <button class="cart-trigger" id="open-cart" type="button" aria-label="Abrir carrito">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+      <span>Carrito</span><b id="cart-count">0</b>
+    </button>
   </header>
 
-  <main>
-    <section class="hero section" id="inicio">
-      <div class="hero-content reveal">
-        <span class="eyebrow">
-          <span class="status-dot"></span>
-          INTERNET ILIMITADO · ARGENTINA
-        </span>
-
-        <h1>Tu conexión,<br><span class="gradient-text">a tu manera.</span></h1>
-
-        <p class="hero-description">
-          Elegí tu compañía, seleccioná un plan y hacé tu pedido.
-          Simple, rápido y con atención personalizada por WhatsApp.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#planes">Ver planes <span>→</span></a>
-          <a class="btn btn-outline" href="#como-comprar">Cómo comprar</a>
+  <main id="inicio">
+    <section class="hero wrap">
+      <div class="hero-content">
+        <div class="eyebrow"><span class="pulse"></span> TU CONEXIÓN, A TU MANERA</div>
+        <h1>Conectate al<br><span class="neon-text">siguiente nivel.</span></h1>
+        <p class="hero-description">Elegí tu plan de internet ilimitado para Personal o Claro Argentina. Comprá fácil, revisá tu pedido y coordiná la activación directamente con PiruNet.</p>
+        <div class="hero-buttons">
+          <a class="button button-primary" href="#planes">Ver planes <span>↗</span></a>
+          <a class="button button-ghost" href="#pasos">Cómo funciona <span>↓</span></a>
         </div>
+        <div class="hero-benefits"><span><i>✓</i> Compra simple</span><span><i>✓</i> Atención directa</span></div>
+      </div>
+      <div class="hero-art" aria-label="Ilustración decorativa de conectividad">
+        <div class="ring ring-one"></div><div class="ring ring-two"></div><div class="ring ring-three"></div>
+        <span class="spark spark-a"></span><span class="spark spark-b"></span><span class="spark spark-c"></span>
+        <div class="tech-core">
+          <div class="wifi-icon"><svg viewBox="0 0 24 24"><path d="M3 8.8a14 14 0 0 1 18 0M6.5 12.2a8.7 8.7 0 0 1 11 0M10 15.7a3.5 3.5 0 0 1 4 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></svg></div>
+          <strong>Piru<span>Net</span></strong><small>POWERED BY CONNECTION</small>
+        </div>
+        <div class="floating-card float-a"><span class="float-icon">ϟ</span><div><b>Internet ilimitado</b><small>Elegí tu duración</small></div></div>
+        <div class="floating-card float-b"><span class="online-dot"></span><div><b>Atención directa</b><small>Coordiná por WhatsApp</small></div></div>
+      </div>
+    </section>
 
-        <div class="hero-features">
-          <span><span class="feature-check">✓</span> Planes flexibles</span>
-          <span><span class="feature-check">✓</span> Atención por WhatsApp</span>
-          <span><span class="feature-check">✓</span> Confirmación del pedido</span>
+    <section class="quick-actions wrap" aria-label="Descargas y prueba gratis">
+      <a class="quick-card download-card" href="https://www.mediafire.com/file/c0khzcxq5w9hg8y/PiruNet_VPS_5.0.0.apk/file" target="_blank" rel="noopener noreferrer">
+        <span class="quick-icon" aria-hidden="true">⇩</span>
+        <span class="quick-copy"><small>APP PIRUNET</small><strong>Descargar APK</strong><span>Instalá la aplicación en tu dispositivo.</span></span>
+        <span class="quick-arrow" aria-hidden="true">↗</span>
+      </a>
+      <button class="quick-card trial-card" id="trial-button" type="button">
+        <span class="quick-icon trial-icon" aria-hidden="true">⏱</span>
+        <span class="quick-copy"><small>PROBALO ANTES</small><strong>Solicitar prueba gratis</strong><span>2 horas de prueba · Activación manual por WhatsApp.</span></span>
+        <span class="quick-arrow" aria-hidden="true">↗</span>
+      </button>
+    </section>
+
+    <section class="plans wrap" id="planes">
+      <div class="section-heading">
+        <div><div class="eyebrow">PLANES PIRUNET</div><h2>Encontrá tu próximo plan.</h2><p>Primero elegí tu compañía y después agregá la duración al carrito.</p></div>
+        <div class="secure-chip"><span>✦</span> Fácil · Claro · Directo</div>
+      </div>
+
+      <div class="provider-picker" role="group" aria-label="Elegir compañía">
+        <button class="provider active" data-provider="Personal" type="button">
+          <span class="provider-logo personal-logo">P</span><span class="provider-name personal-name"><b>Personal</b><small>Argentina</small></span><span class="provider-check">✓</span>
+        </button>
+        <button class="provider" data-provider="Claro Ar" type="button">
+          <span class="provider-logo claro-logo">C</span><span class="provider-name claro-name"><b>Claro Ar</b><small>Argentina</small></span><span class="provider-check">✓</span>
+        </button>
+      </div>
+
+      <div class="plans-grid">
+        <article class="plan-card" data-days="7" data-price="3000">
+          <div class="plan-meta"><span class="plan-type">START</span><span class="days-pill">7 días</span></div>
+          <h3>Plan semanal</h3><p class="plan-description">Una opción flexible para conectarte por una semana.</p>
+          <div class="price"><span>$</span><strong>3.000</strong><small>ARS</small></div>
+          <div class="card-rule"></div>
+          <ul class="features"><li><i>✓</i> Internet ilimitado</li><li><i>✓</i> Coordinación por WhatsApp</li><li><i>✓</i> Pedido claro y sencillo</li></ul>
+          <button class="button button-outline add-plan" type="button">Agregar al carrito <span>＋</span></button>
+        </article>
+        <article class="plan-card plan-featured" data-days="15" data-price="4500">
+          <span class="featured-label">MÁS ELEGIDO</span>
+          <div class="plan-meta"><span class="plan-type">SMART</span><span class="days-pill">15 días</span></div>
+          <h3>Plan quincenal</h3><p class="plan-description">El equilibrio ideal entre duración y precio.</p>
+          <div class="price"><span>$</span><strong>4.500</strong><small>ARS</small></div>
+          <div class="card-rule"></div>
+          <ul class="features"><li><i>✓</i> Internet ilimitado</li><li><i>✓</i> Coordinación por WhatsApp</li><li><i>✓</i> Pedido claro y sencillo</li></ul>
+          <button class="button button-primary add-plan" type="button">Agregar al carrito <span>＋</span></button>
+        </article>
+        <article class="plan-card" data-days="30" data-price="6000">
+          <div class="plan-meta"><span class="plan-type">MAX</span><span class="days-pill">30 días</span></div>
+          <h3>Plan mensual</h3><p class="plan-description">Más tiempo de conexión con un solo pedido.</p>
+          <div class="price"><span>$</span><strong>6.000</strong><small>ARS</small></div>
+          <div class="card-rule"></div>
+          <ul class="features"><li><i>✓</i> Internet ilimitado</li><li><i>✓</i> Coordinación por WhatsApp</li><li><i>✓</i> Pedido claro y sencillo</li></ul>
+          <button class="button button-outline add-plan" type="button">Agregar al carrito <span>＋</span></button>
+        </article>
+      </div>
+      <p class="disclaimer">La disponibilidad y compatibilidad del servicio deben confirmarse antes de la activación. Revisá los datos de tu pedido antes de pagar.</p>
+    </section>
+
+    <section class="how" id="pasos">
+      <div class="wrap">
+        <div class="section-heading centered"><div class="eyebrow">EN TRES PASOS</div><h2>Comprar, sin vueltas.</h2><p>Elegí, revisá y coordiná tu activación.</p></div>
+        <div class="steps-grid">
+          <article class="step-card"><span class="step-num">01</span><div class="step-icon">▤</div><h3>Elegí tu plan</h3><p>Seleccioná Personal o Claro y la cantidad de días que necesitás.</p></article>
+          <article class="step-card"><span class="step-num">02</span><div class="step-icon">🛒</div><h3>Revisá el carrito</h3><p>Comprobá las cantidades, el total e ingresá tus datos de contacto.</p></article>
+          <article class="step-card"><span class="step-num">03</span><div class="step-icon">↗</div><h3>Pagá y coordiná</h3><p>Continuá a Mercado Pago y escribinos por WhatsApp para confirmar el pedido.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section plans-section" id="planes">
-      <div class="section-heading reveal">
-        <span class="eyebrow">NUESTROS PLANES</span>
-        <h2>Elegí tu <span class="gradient-text">conexión</span></h2>
-        <p>Seleccioná un plan y después agregalo al carrito.</p>
-      </div>
-
-      <div class="provider-grid">
-
-        <!-- PERSONAL -->
-        <article class="provider-card personal-card reveal">
-          <div class="provider-heading">
-            <div class="provider-logo personal-logo">P</div>
-            <div class="provider-title">
-              <h3 class="personal-name">Personal</h3>
-              <p>Internet ilimitado</p>
-            </div>
-            <span class="provider-tag">ARG</span>
-          </div>
-
-          <div class="plan-list">
-            <button class="plan-option" type="button"
-              data-plan-option data-provider="Personal"
-              data-days="7" data-price="3000" aria-pressed="false">
-              <span class="plan-info">
-                <strong>7 días</strong>
-                <small>Plan semanal</small>
-              </span>
-              <span class="plan-price">$3.000</span>
-              <span class="select-indicator">✓</span>
-            </button>
-
-            <button class="plan-option" type="button"
-              data-plan-option data-provider="Personal"
-              data-days="15" data-price="4500" aria-pressed="false">
-              <span class="plan-info">
-                <strong>15 días</strong>
-                <small>Plan quincenal</small>
-              </span>
-              <span class="plan-price">$4.500</span>
-              <span class="select-indicator">✓</span>
-            </button>
-
-            <button class="plan-option" type="button"
-              data-plan-option data-provider="Personal"
-              data-days="30" data-price="6000" aria-pressed="false">
-              <span class="plan-info">
-                <strong>30 días</strong>
-                <small>Plan mensual</small>
-              </span>
-              <span class="plan-price">$6.000</span>
-              <span class="select-indicator">✓</span>
-            </button>
-          </div>
-
-          <button class="btn btn-primary btn-add-selected"
-            type="button" data-add-provider="Personal" disabled>
-            Seleccioná un plan
-          </button>
-
-          <p class="selection-help" data-selection-help="Personal">
-            Primero elegí la duración del plan.
-          </p>
-        </article>
-
-        <!-- CLARO ARGENTINA -->
-        <article class="provider-card claro-card reveal">
-          <div class="provider-heading">
-            <div class="provider-logo claro-logo">C</div>
-            <div class="provider-title">
-              <h3 class="claro-name">Claro Ar</h3>
-              <p>Internet ilimitado</p>
-            </div>
-            <span class="provider-tag">ARG</span>
-          </div>
-
-          <div class="plan-list">
-            <button class="plan-option" type="button"
-              data-plan-option data-provider="Claro"
-              data-days="7" data-price="3000" aria-pressed="false">
-              <span class="plan-info">
-                <strong>7 días</strong>
-                <small>Plan semanal</small>
-              </span>
-              <span class="plan-price">$3.000</span>
-              <span class="select-indicator">✓</span>
-            </button>
-
-            <button class="plan-option" type="button"
-              data-plan-option data-provider="Claro"
-              data-days="15" data-price="4500" aria-pressed="false">
-              <span class="plan-info">
-                <strong>15 días</strong>
-                <small>Plan quincenal</small>
-              </span>
-              <span class="plan-price">$4.500</span>
-              <span class="select-indicator">✓</span>
-            </button>
-
-            <button class="plan-option" type="button"
-              data-plan-option data-provider="Claro"
-              data-days="30" data-price="6000" aria-pressed="false">
-              <span class="plan-info">
-                <strong>30 días</strong>
-                <small>Plan mensual</small>
-              </span>
-              <span class="plan-price">$6.000</span>
-              <span class="select-indicator">✓</span>
-            </button>
-          </div>
-
-          <button class="btn btn-primary btn-add-selected"
-            type="button" data-add-provider="Claro" disabled>
-            Seleccioná un plan
-          </button>
-
-          <p class="selection-help" data-selection-help="Claro">
-            Primero elegí la duración del plan.
-          </p>
-        </article>
-
-      </div>
-    </section>
-
-    <section class="section cart-section" id="carrito">
-      <div class="section-heading reveal">
-        <span class="eyebrow">TU PEDIDO</span>
-        <h2>Tu <span class="gradient-text">carrito</span></h2>
-        <p>Revisá los planes antes de continuar con el pago.</p>
-      </div>
-
-      <div class="cart-panel reveal">
-        <div id="cart-items" class="cart-items">
-          <div class="empty-cart">
-            <span class="empty-cart-icon">🛒</span>
-            <h3>Tu carrito está vacío</h3>
-            <p>Elegí un plan y tocá “Agregar al carrito”.</p>
-            <a href="#planes" class="text-link">Ver planes disponibles →</a>
-          </div>
-        </div>
-
-        <div class="cart-summary">
-          <div class="summary-line">
-            <span>Productos</span>
-            <strong id="cart-subtotal">0</strong>
-          </div>
-
-          <div class="summary-line total-line">
-            <span>Total del pedido</span>
-            <strong id="cart-total">$0</strong>
-          </div>
-
-          <button id="checkout-button" class="btn btn-primary btn-full"
-            type="button" disabled>
-            Continuar con el pedido →
-          </button>
-
-          <p class="payment-note">
-            El pago se realiza mediante Mercado Pago. La compra se confirma
-            después de verificar el pago.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section how-section" id="como-comprar">
-      <div class="section-heading reveal">
-        <span class="eyebrow">FÁCIL Y RÁPIDO</span>
-        <h2>¿Cómo <span class="gradient-text">comprar?</span></h2>
-      </div>
-
-      <div class="steps-grid">
-        <article class="step-card reveal">
-          <span class="step-number">01</span>
-          <h3>Elegí tu plan</h3>
-          <p>Seleccioná Personal o Claro Ar y la duración que necesitás.</p>
-        </article>
-
-        <article class="step-card reveal">
-          <span class="step-number">02</span>
-          <h3>Armá tu pedido</h3>
-          <p>Agregá los planes al carrito y revisá el total.</p>
-        </article>
-
-        <article class="step-card reveal">
-          <span class="step-number">03</span>
-          <h3>Pagá y confirmá</h3>
-          <p>Realizá el pago y enviá los datos del pedido por WhatsApp.</p>
-        </article>
-      </div>
+    <section class="cta wrap">
+      <div><div class="eyebrow">PIRUNET INTERNET</div><h2>Tu próximo plan empieza acá.</h2><p>Elegí el plan que te sirve y armá tu pedido en segundos.</p></div>
+      <a class="button button-primary" href="#planes">Elegir un plan <span>↗</span></a>
     </section>
   </main>
 
-  <footer class="footer">
-    <a class="brand footer-brand" href="#inicio">
-      <span class="brand-icon">P</span>
-      <span>Piru<span class="brand-accent">Net</span></span>
-    </a>
-    <p>Internet a tu manera.</p>
-    <span class="copyright">© <span id="current-year"></span> PiruNet</span>
-  </footer>
+  <footer class="footer wrap"><a class="footer-brand" href="#inicio">Piru<span>Net</span></a><span>Internet ilimitado · Personal y Claro Argentina</span><span>© <span id="year"></span> PiruNet</span></footer>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
+  <div class="overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-label="Carrito de compras">
+    <div class="drawer-head"><div><span class="eyebrow">TU PEDIDO</span><h2>Carrito <small id="drawer-count">(0)</small></h2></div><button class="close-cart" id="close-cart" type="button" aria-label="Cerrar carrito">×</button></div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="checkout" id="checkout" hidden>
+      <div class="total-row"><span>Total del pedido</span><strong id="cart-total">$0</strong></div>
+      <div class="customer-fields">
+        <label for="customer-name">Nombre</label><input id="customer-name" type="text" autocomplete="name" placeholder="Tu nombre">
+        <label for="customer-phone">Tu WhatsApp</label><input id="customer-phone" type="tel" autocomplete="tel" placeholder="Código de área + número">
+        <p>Usamos estos datos para identificar tu pedido y coordinar la activación manual.</p>
+      </div>
+      <button class="button button-primary checkout-button" id="pay-button" type="button">Continuar a Mercado Pago <span>↗</span></button>
+      <button class="button whatsapp-button" id="whatsapp-button" type="button"><span>◉</span> Enviar pedido por WhatsApp</button>
+      <p class="payment-note">El enlace de Mercado Pago es general y puede no mostrar automáticamente el total del carrito. Confirmá el importe antes de pagar y enviá el pedido por WhatsApp. La activación se coordina manualmente.</p>
+    </div>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="script.js"></script>
 </body>
-      </html>
+</html>
