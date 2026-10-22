@@ -1,288 +1,280 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#090a12">
-  <meta name="description" content="PiruNet VPS para Android. Descargá la aplicación, consultá por una prueba gratis y elegí tu plan de internet.">
-  <title>PiruNet VPS | Internet Ilimitado</title>
-
+  <meta name="description" content="PiruNet VPS: planes de internet Personal por 7, 15 o 30 días.">
+  <title>PiruNet VPS | Internet Personal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
 </head>
-
 <body>
   <header class="topbar">
-    <a class="brand" href="#inicio" aria-label="PiruNet, inicio">
+    <a class="brand" href="#inicio">
       <span class="brand-icon">P</span>
-      <span>Piru<span class="brand-accent">Net</span></span>
+      <span>PiruNet <span class="brand-accent">VPS</span></span>
     </a>
 
-    <nav class="nav-links" aria-label="Navegación principal">
-      <a href="#inicio">Inicio</a>
+    <nav class="nav-links">
       <a href="#planes">Planes</a>
-      <a href="#inicio">Aplicación</a>
+      <a href="#aplicacion">Aplicación</a>
       <a href="#como-funciona">Cómo funciona</a>
     </nav>
 
     <a class="cart-shortcut" href="#carrito">
-      🛒 Carrito
-      <span class="cart-count" id="cart-count">0</span>
+      🛒 Carrito <span class="cart-count" id="cart-count">0</span>
     </a>
   </header>
 
   <main>
-    <!-- PORTADA PRINCIPAL -->
     <section class="hero section" id="inicio">
       <div class="hero-content">
-        <div class="eyebrow">
-          <span class="status-dot"></span>
-          PIRUNET VPS · PARA ANDROID
-        </div>
+        <div class="eyebrow"><span class="status-dot"></span> INTERNET PERSONAL</div>
 
-        <h1>
-          Tu aplicación,<br>
-          <span class="gradient-text">a un toque.</span>
-        </h1>
+        <h1>Conectate con <span class="gradient-text">PiruNet VPS.</span></h1>
 
         <p class="hero-description">
-          Descargá la aplicación y consultá por una prueba gratis.
-          Conocé las opciones de conexión de PiruNet VPS.
+          Elegí tu plan de Personal, seleccioná cuántos dispositivos necesitás
+          y la duración. Armá tu pedido y coordiná la activación por WhatsApp.
         </p>
 
         <div class="hero-actions">
-          <a
-            class="btn btn-primary"
-            href="https://www.mediafire.com/file/c0khzcxq5w9hg8y/PiruNet_VPS_5.0.0.apk/file"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ↓ Descargar aplicación
-          </a>
-
-          <a
-            class="btn btn-outline"
-            href="https://wa.me/5493844546841?text=Hola%2C%20quiero%20solicitar%20una%20prueba%20gratis%20de%20PiruNet%20VPS."
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Solicitar prueba gratis ↗
-          </a>
+          <a class="btn btn-primary" href="#planes">Ver planes →</a>
+          <a class="btn btn-outline" href="#aplicacion">Descargar aplicación</a>
         </div>
 
-    <!-- PLANES -->
-    <section class="plans-section section" id="planes">
-      <div class="section-heading">
-        <span class="eyebrow">PLANES DISPONIBLES</span>
-        <h2>Elegí tu <span class="gradient-text">conexión</span></h2>
-        <p>Seleccioná un plan y agregalo al carrito.</p>
+        <p class="hero-note">
+          La activación se coordina por WhatsApp después de confirmar el pedido.
+        </p>
+
+        <div class="hero-features">
+          <span><span class="feature-check">✓</span> Planes de 7, 15 y 30 días</span>
+          <span><span class="feature-check">✓</span> De 1 a 4 dispositivos</span>
+          <span><span class="feature-check">✓</span> Atención por WhatsApp</span>
+        </div>
       </div>
 
-      <div class="provider-grid">
-        <article class="provider-card">
-          <div class="provider-heading">
-            <div class="provider-logo personal-logo">P</div>
-            <div class="provider-title">
-              <h3 class="personal-name">Personal</h3>
-              <p>Planes de internet</p>
-            </div>
-            <span class="provider-tag">PERSONAL</span>
+      <div class="hero-visual">
+        <div class="app-preview">
+          <div class="app-preview-top">
+            <span class="app-online-dot"></span> SERVICIO PERSONAL
           </div>
-
-          <div class="plan-list">
-            <button class="plan-option" type="button"
-              data-provider="Personal" data-days="7" data-price="3000">
-              <span class="select-indicator">✓</span>
-              <span class="plan-info">
-                <strong>7 días</strong>
-                <small>Plan semanal</small>
-              </span>
-              <span class="plan-price">$3.000</span>
-            </button>
-
-            <button class="plan-option" type="button"
-              data-provider="Personal" data-days="15" data-price="4500">
-              <span class="select-indicator">✓</span>
-              <span class="plan-info">
-                <strong>15 días</strong>
-                <small>Plan quincenal</small>
-              </span>
-              <span class="plan-price">$4.500</span>
-            </button>
-
-            <button class="plan-option" type="button"
-              data-provider="Personal" data-days="30" data-price="6000">
-              <span class="select-indicator">✓</span>
-              <span class="plan-info">
-                <strong>30 días</strong>
-                <small>Plan mensual</small>
-              </span>
-              <span class="plan-price">$6.000</span>
-            </button>
+          <div class="app-preview-icon">P</div>
+          <h2>PiruNet <span>VPS</span></h2>
+          <p>Tu conexión, a tu manera.</p>
+          <div class="app-preview-version">
+            <span>APLICACIÓN</span>
+            <strong>Versión 5.0.0</strong>
           </div>
-
-          <button class="btn btn-primary btn-add-selected" type="button" disabled>
-            Agregar al carrito
-          </button>
-          <p class="selection-help">Seleccioná un plan para continuar.</p>
-        </article>
-
-        <article class="provider-card">
-          <div class="provider-heading">
-            <div class="provider-logo claro-logo">C</div>
-            <div class="provider-title">
-              <h3 class="claro-name">Claro</h3>
-              <p>Planes de internet</p>
-            </div>
-            <span class="provider-tag">CLARO</span>
-          </div>
-
-          <div class="plan-list">
-            <button class="plan-option" type="button"
-              data-provider="Claro" data-days="7" data-price="3000">
-              <span class="select-indicator">✓</span>
-              <span class="plan-info">
-                <strong>7 días</strong>
-                <small>Plan semanal</small>
-              </span>
-              <span class="plan-price">$3.000</span>
-            </button>
-
-            <button class="plan-option" type="button"
-              data-provider="Claro" data-days="15" data-price="4500">
-              <span class="select-indicator">✓</span>
-              <span class="plan-info">
-                <strong>15 días</strong>
-                <small>Plan quincenal</small>
-              </span>
-              <span class="plan-price">$4.500</span>
-            </button>
-
-            <button class="plan-option" type="button"
-              data-provider="Claro" data-days="30" data-price="6000">
-              <span class="select-indicator">✓</span>
-              <span class="plan-info">
-                <strong>30 días</strong>
-                <small>Plan mensual</small>
-              </span>
-              <span class="plan-price">$6.000</span>
-            </button>
-          </div>
-
-          <button class="btn btn-primary btn-add-selected" type="button" disabled>
-            Agregar al carrito
-          </button>
-          <p class="selection-help">Seleccioná un plan para continuar.</p>
-        </article>
+          <div class="app-preview-bottom">Planes flexibles · Atención directa</div>
+        </div>
       </div>
     </section>
 
-    <!-- CARRITO -->
-    <section class="cart-section section" id="carrito">
+    <section class="section plans-section" id="planes">
       <div class="section-heading">
-        <span class="eyebrow">TU PEDIDO</span>
-        <h2>Mi <span class="gradient-text">carrito</span></h2>
-        <p>Revisá tus planes antes de continuar.</p>
+        <div class="eyebrow">ELEGÍ TU PLAN</div>
+        <h2>Planes para Personal</h2>
+        <p>Seleccioná una duración para la cantidad de dispositivos que necesitás.</p>
+      </div>
+
+      <div class="provider-grid">
+
+        <!-- 1 DISPOSITIVO -->
+        <article class="provider-card" data-devices="1">
+          <div class="provider-heading">
+            <div class="provider-logo personal-logo">P</div>
+            <div class="provider-title">
+              <h3 class="personal-name">1 dispositivo</h3>
+              <p>Para conectar un solo equipo</p>
+            </div>
+            <span class="provider-tag">BÁSICO</span>
+          </div>
+
+          <div class="plan-list">
+            <button class="plan-option" type="button" data-provider="Personal" data-devices="1" data-days="7" data-price="3000">
+              <span class="select-indicator">✓</span>
+              <span class="plan-info"><strong>7 días</strong><small>1 dispositivo</small></span>
+              <span class="plan-price">$3.000</span>
+            </button>
+            <button class="plan-option" type="button" data-provider="Personal" data-devices="1" data-days="15" data-price="4500">
+              <span class="select-indicator">✓</span>
+              <span class="plan-info"><strong>15 días</strong><small>1 dispositivo</small></span>
+              <span class="plan-price">$4.500</span>
+            </button>
+            <button class="plan-option" type="button" data-provider="Personal" data-devices="1" data-days="30" data-price="6500">
+              <span class="select-indicator">✓</span>
+              <span class="plan-info"><strong>30 días</strong><small>1 dispositivo</small></span>
+              <span class="plan-price">$6.500</span>
+            </button>
+          </div>
+
+          <button class="btn btn-primary btn-add-selected" type="button" disabled>Agregar al carrito</button>
+          <p class="selection-help">Seleccioná una duración.</p>
+        </article>
+
+        <!-- 2 DISPOSITIVOS -->
+        <article class="provider-card" data-devices="2">
+          <div class="provider-heading">
+            <div class="provider-logo personal-logo">P</div>
+            <div class="provider-title">
+              <h3 class="personal-name">2 dispositivos</h3>
+              <p>Para conectar dos equipos</p>
+            </div>
+            <span class="provider-tag">DUO</span>
+          </div>
+
+          <div class="plan-list">
+            <button class="plan-option" type="button" data-provider="Personal" data-devices="2" data-days="7" data-price="5500">
+              <span class="select-indicator">✓</span>
+              <span class="plan-info"><strong>7 días</strong><small>2 dispositivos</small></span>
+              <span class="plan-price">$5.500</span>
+            </button>
+            <button class="plan-option" type="button" data-provider="Personal" data-devices="2" data-days="15" data-price="8000">
+              <span class="select-indicator">✓</span>
+              <span class="plan-info"><strong>15 días</strong><small>2 dispositivos</small></span>
+              <span class="plan-price">$8.000</span>
+            </button>
+            <button class="plan-option" type="button" data-provider="Personal" data-devices="2" data-days="30" data-price="11500">
+              <span class="select-indicator">✓</span>
+              <span class="plan-info"><strong>30 días</strong><small>2 dispositivos</small></span>
+              <span class="plan-price">$11.500</span>
+            </button>
+          </div>
+
+          <button class="btn btn-primary btn-add-selected" type="button" disabled>Agregar al carrito</button>
+          <p class="selection-help">Seleccioná una duración.</p>
+        </article>
+
+        <!-- 3 DISPOSITIVOS -->
+        <article class="provider-card" data-devices="3">
+          <div class="provider-heading">
+            <div class="provider-logo personal-logo">P</div>
+            <div class="provider-title">
+              <h3 class="personal-name">3 dispositivos</h3>
+              <p>Para conectar tres equipos</p>
+            </div>
+            <span class="provider-tag">FAMILIAR</span>
+          </div>
+
+          <div class="plan-list">
+            <button class="plan-option" type="button" data-provider="Personal" data-devices="3" data-days="7" data-price="7500">
+              <span class="select-indicator">✓</span>
+              <span class="plan-info"><strong>7 días</strong><small>3 dispositivos</small></span>
+              <span class="plan-price">$7.500</span>
+            </button>
+            <button class="plan-option" type="button" data-provider="Personal" data-devices="3" data-days="15" data-price="10000">
+              <span class="select-indicator">✓</span>
+              <span class="plan-info"><strong>15 días</strong><small>3 dispositivos</small></span>
+              <span class="plan-price">$10.000</span>
+            </button>
+            <button class="plan-option" type="button" data-provider="Personal" data-devices="3" data-days="30" data-price="14000">
+              <span class="select-indicator">✓</span>
+              <span class="plan-info"><strong>30 días</strong><small>3 dispositivos</small></span>
+              <span class="plan-price">$14.000</span>
+            </button>
+          </div>
+
+          <button class="btn btn-primary btn-add-selected" type="button" disabled>Agregar al carrito</button>
+          <p class="selection-help">Seleccioná una duración.</p>
+        </article>
+
+        <!-- 4 DISPOSITIVOS -->
+        <article class="provider-card" data-devices="4">
+          <div class="provider-heading">
+            <div class="provider-logo personal-logo">P</div>
+            <div class="provider-title">
+              <h3 class="personal-name">4 dispositivos</h3>
+              <p>Para conectar cuatro equipos</p>
+            </div>
+            <span class="provider-tag">PLUS</span>
+          </div>
+
+          <div class="plan-list">
+            <button class="plan-option" type="button" data-provider="Personal" data-devices="4" data-days="7" data-price="9000">
+              <span class="select-indicator">✓</span>
+              <span class="plan-info"><strong>7 días</strong><small>4 dispositivos</small></span>
+              <span class="plan-price">$9.000</span>
+            </button>
+            <button class="plan-option" type="button" data-provider="Personal" data-devices="4" data-days="15" data-price="12000">
+              <span class="select-indicator">✓</span>
+              <span class="plan-info"><strong>15 días</strong><small>4 dispositivos</small></span>
+              <span class="plan-price">$12.000</span>
+            </button>
+            <button class="plan-option" type="button" data-provider="Personal" data-devices="4" data-days="30" data-price="16000">
+              <span class="select-indicator">✓</span>
+              <span class="plan-info"><strong>30 días</strong><small>4 dispositivos</small></span>
+              <span class="plan-price">$16.000</span>
+            </button>
+          </div>
+
+          <button class="btn btn-primary btn-add-selected" type="button" disabled>Agregar al carrito</button>
+          <p class="selection-help">Seleccioná una duración.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section cart-section" id="carrito">
+      <div class="section-heading">
+        <div class="eyebrow">TU PEDIDO</div>
+        <h2>Carrito de compras</h2>
+        <p>Revisá los planes elegidos antes de continuar por WhatsApp.</p>
       </div>
 
       <div class="cart-panel">
-        <div class="cart-items" id="cart-items">
-          <div class="empty-cart" id="empty-cart">
-            <div class="empty-cart-icon">🛒</div>
-            <h3>Tu carrito está vacío</h3>
-            <p>Elegí un plan de Personal o Claro para comenzar.</p>
-            <a class="text-link" href="#planes">Ver planes disponibles →</a>
-          </div>
-        </div>
-
+        <div class="cart-items" id="cart-items" aria-live="polite"></div>
         <aside class="cart-summary">
-          <div class="summary-line">
-            <span>Productos</span>
-            <strong id="summary-quantity">0</strong>
-          </div>
-
-          <div class="summary-line total-line">
-            <span>Total</span>
-            <strong id="cart-total">$0</strong>
-          </div>
-
-          <button
-            class="btn btn-primary btn-full"
-            id="checkout-button"
-            type="button"
-            disabled
-          >
-            Continuar por WhatsApp
-          </button>
-
-          <a
-            class="btn btn-outline btn-full payment-link"
-            href="https://link.mercadopago.com.ar/pirunet"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Abrir Mercado Pago
-          </a>
-
-          <p class="payment-note">
-            Coordiná el pago y la activación por WhatsApp.
-            El pago no se procesa automáticamente desde esta página.
-          </p>
+          <div class="summary-line"><span>Planes seleccionados</span><strong id="summary-quantity">0</strong></div>
+          <div class="summary-line total-line"><span>Total</span><strong id="cart-total">$0</strong></div>
+          <button class="btn btn-primary btn-full" id="checkout-button" type="button" disabled>Continuar por WhatsApp</button>
+          <a class="btn btn-outline btn-full payment-link" href="https://link.mercadopago.com.ar/pirunet" target="_blank" rel="noopener noreferrer">Abrir Mercado Pago</a>
+          <p class="payment-note">El pedido se coordina por WhatsApp. La activación se realiza después de confirmar los detalles y el pago.</p>
         </aside>
       </div>
     </section>
 
-    <!-- CÓMO FUNCIONA -->
-    <section class="how-section section" id="como-funciona">
+    <section class="section how-section" id="como-funciona">
       <div class="section-heading">
-        <span class="eyebrow">SENCILLO Y RÁPIDO</span>
-        <h2>¿Cómo <span class="gradient-text">funciona?</span></h2>
+        <div class="eyebrow">SENCILLO Y DIRECTO</div>
+        <h2>¿Cómo funciona?</h2>
+        <p>Seguí estos pasos para coordinar tu servicio.</p>
       </div>
-
       <div class="steps-grid">
-        <article class="step-card">
-          <span class="step-number">01</span>
-          <h3>Elegí tu plan</h3>
-          <p>Seleccioná Personal o Claro y la duración que necesitás.</p>
-        </article>
+        <article class="step-card"><span class="step-number">01</span><h3>Elegí tu plan</h3><p>Seleccioná la cantidad de dispositivos y la duración que necesitás.</p></article>
+        <article class="step-card"><span class="step-number">02</span><h3>Enviá el pedido</h3><p>Revisá el carrito y mandá el detalle por WhatsApp para coordinar.</p></article>
+        <article class="step-card"><span class="step-number">03</span><h3>Coordiná la activación</h3><p>Confirmá el pago y recibí las indicaciones para comenzar a usar el servicio.</p></article>
+      </div>
+    </section>
 
-        <article class="step-card">
-          <span class="step-number">02</span>
-          <h3>Contactanos</h3>
-          <p>Enviá tu pedido por WhatsApp para coordinar el pago y la activación.</p>
-        </article>
-
-        <article class="step-card">
-          <span class="step-number">03</span>
-          <h3>Consultá por una prueba</h3>
-          <p>Escribinos para consultar si hay una prueba gratis disponible.</p>
-          <a
-            class="text-link"
-            href="https://wa.me/5493844546841?text=Hola%2C%20quiero%20solicitar%20una%20prueba%20gratis%20de%20PiruNet%20VPS."
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Solicitar prueba gratis →
-          </a>
-        </article>
+    <section class="section how-section app-section" id="aplicacion">
+      <div class="section-heading">
+        <div class="eyebrow">PIRUNET VPS</div>
+        <h2>Aplicación para Android</h2>
+        <p>Descargá el archivo de instalación y seguí las indicaciones de activación.</p>
+      </div>
+      <div class="app-download-card">
+        <div class="app-download-icon">P</div>
+        <div class="app-download-copy"><h3>PiruNet VPS 5.0.0</h3><p>Archivo APK para dispositivos Android.</p></div>
+        <a class="btn btn-primary" href="https://www.mediafire.com/file/c0khzcxq5w9hg8y/PiruNet_VPS_5.0.0.apk/file" target="_blank" rel="noopener noreferrer">Descargar APK</a>
+      </div>
+      <p class="download-note">Android puede solicitar autorización para instalar aplicaciones descargadas fuera de Play Store. Instalá solo archivos de una fuente en la que confíes.</p>
+      <div class="app-secondary-actions">
+        <a class="btn btn-outline" href="https://wa.me/5493844546841?text=Hola%2C%20quiero%20solicitar%20una%20prueba%20de%20PiruNet%20VPS." target="_blank" rel="noopener noreferrer">Solicitar prueba por WhatsApp</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <a class="brand footer-brand" href="#inicio">
-      <span class="brand-icon">P</span>
-      <span>Piru<span class="brand-accent">Net</span></span>
-    </a>
-
-    <p class="copyright">
-      © <span id="current-year"></span> PiruNet. Todos los derechos reservados.
-    </p>
+    <a class="brand footer-brand" href="#inicio"><span class="brand-icon">P</span><span>PiruNet <span class="brand-accent">VPS</span></span></a>
+    <p class="copyright">© <span id="current-year"></span> PiruNet VPS. Todos los derechos reservados.</p>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
 </body>
-</html>
+                                                                </html>
