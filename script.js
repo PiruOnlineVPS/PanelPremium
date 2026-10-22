@@ -1,309 +1,234 @@
+// PiruNet Internet ilimitado — carrito y pedido.
 const WHATSAPP_NUMBER = "5493844546841";
 const MERCADO_PAGO_URL = "https://link.mercadopago.com.ar/pirunet";
 
-const cart = [];
-
-const selectedPlans = {
-  Personal: null,
-  Claro: null
-};
-
-const cartItemsElement = document.getElementById("cart-items");
-const cartCountElement = document.getElementById("cart-count");
-const cartSubtotalElement = document.getElementById("cart-subtotal");
-const cartTotalElement = document.getElementById("cart-total");
-const checkoutButton = document.getElementById("checkout-button");
-const toastElement = document.getElementById("toast");
-
+const money = value => "$" + Number(value).toLocaleString("es-AR");
+let selectedProvider = "Personal";
+let cart = [];
 let toastTimeout;
-let orderPrepared = false;
 
-document.getElementById("current-year").textContent =
-  new Date().getFullYear();
+const drawer = document.getElementById("cart-drawer");
+const overlay = document.getElementById("cart-overlay");
+const itemsContainer = document.getElementById("cart-items");
+const checkout = document.getElementById("checkout");
+const toast = document.getElementById("toast");
 
-function formatPrice(amount) {
-  return "$" + amount.toLocaleString("es-AR");
-}
+document.getElementById("year").textContent = new Date().getFullYear();
 
 function showToast(message) {
-  toastElement.textContent = message;
-  toastElement.classList.add("show");
-
+  toast.textContent = message;
+  toast.classList.add("show");
   clearTimeout(toastTimeout);
-
-  toastTimeout = setTimeout(() => {
-    toastElement.classList.remove("show");
-  }, 2600);
+  toastTimeout = setTimeout(() => toast.classList.remove("show"), 2600);
 }
 
-function getCartQuantity() {
-  return cart.reduce((total, item) => total + item.quantity, 0);
+function openCart() {
+  drawer.classList.add("open");
+  overlay.classList.add("open");
+  drawer.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
 }
 
-function getCartTotal() {
-  return cart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+function closeCart() {
+  drawer.classList.remove("open");
+  overlay.classList.remove("open");
+  drawer.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
 }
 
-// SELECCIONAR UN PLAN SIN AGREGARLO AUTOMÁTICAMENTE
+const TRIAL_MESSAGE = "¡Hola! 👋 Quiero solicitar una prueba gratis de PiruNet antes de contratar un plan. ¿Me podrías pasar un usuario y contraseña para probar el servicio? 😊";
 
-document.querySelectorAll("[data-plan-option]").forEach((option) => {
-  option.addEventListener("click", () => {
-    const provider = option.dataset.provider;
-    const days = Number(option.dataset.days);
-    const price = Number(option.dataset.price);
+document.getElementById("trial-button").addEventListener("click", () => {
+  const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(TRIAL_MESSAGE);
+  window.open(url, "_blank", "noopener,noreferrer");
+});
 
-    selectedPlans[provider] = { provider, days, price };
+document.getElementById("open-cart").addEventListener("click", openCart);
+document.getElementById("close-cart").addEventListener("click", closeCart);
+overlay.addEventListener("click", closeCart);
 
-    document
-      .querySelectorAll(
-        `[data-plan-option][data-provider="${provider}"]`
-      )
-      .forEach((plan) => {
-        const isSelected = plan === option;
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeCart();
+});
 
-        plan.classList.toggle("selected", isSelected);
-        plan.setAttribute("aria-pressed", String(isSelected));
-      });
+document.querySelectorAll(".provider").forEach(button => {
+  button.addEventListener("click", () => {
+    selectedProvider = button.dataset.provider;
 
-    const addButton = document.querySelector(
-      `[data-add-provider="${provider}"]`
-    );
+    document.querySelectorAll(".provider").forEach(option => {
+      option.classList.toggle("active", option === button);
+    });
 
-    const helpText = document.querySelector(
-      `[data-selection-help="${provider}"]`
-    );
-
-    addButton.disabled = false;
-    addButton.textContent =
-      `Agregar ${days} días · ${formatPrice(price)}`;
-
-    helpText.textContent =
-      `Seleccionaste ${days} días por ${formatPrice(price)}.`;
-
-    showToast(`Plan de ${provider} seleccionado.`);
+    showToast("Seleccionaste " + selectedProvider);
   });
 });
 
-// AGREGAR AL CARRITO SOLO AL TOCAR EL BOTÓN
-
-document.querySelectorAll("[data-add-provider]").forEach((button) => {
+document.querySelectorAll(".add-plan").forEach(button => {
   button.addEventListener("click", () => {
-    const provider = button.dataset.addProvider;
-    const selected = selectedPlans[provider];
+    const card = button.closest(".plan-card");
+    const days = Number(card.dataset.days);
+    const price = Number(card.dataset.price);
+    const key = selectedProvider + "-" + days;
+    const existing = cart.find(item => item.key === key);
 
-    if (!selected) {
-      showToast("Primero seleccioná un plan.");
-      return;
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({
+        key,
+        provider: selectedProvider,
+        days,
+        price,
+        qty: 1
+      });
     }
 
-    addPlan(selected);
-
-    selectedPlans[provider] = null;
-
-    document
-      .querySelectorAll(
-        `[data-plan-option][data-provider="${provider}"]`
-      )
-      .forEach((option) => {
-        option.classList.remove("selected");
-        option.setAttribute("aria-pressed", "false");
-      });
-
-    button.disabled = true;
-    button.textContent = "Seleccioná un plan";
-
-    document.querySelector(
-      `[data-selection-help="${provider}"]`
-    ).textContent = "Plan agregado. Podés elegir otro.";
-
     renderCart();
-    showToast("¡Plan agregado al carrito!");
+    showToast("Plan de " + days + " días agregado al carrito");
   });
 });
 
-function addPlan(plan) {
-  const existingItem = cart.find(
-    (item) =>
-      item.provider === plan.provider &&
-      item.days === plan.days &&
-      item.price === plan.price
-  );
-
-  if (existingItem) {
-    existingItem.quantity += 1;
-  } else {
-    cart.push({
-      provider: plan.provider,
-      days: plan.days,
-      price: plan.price,
-      quantity: 1
-    });
-  }
-
-  orderPrepared = false;
-  resetCheckoutButton();
+function itemCount() {
+  return cart.reduce((sum, item) => sum + item.qty, 0);
 }
 
-function removePlan(index) {
-  cart.splice(index, 1);
-  orderPrepared = false;
-
-  resetCheckoutButton();
-  renderCart();
-
-  showToast("Producto eliminado del carrito.");
-}
-
-function resetCheckoutButton() {
-  checkoutButton.textContent = "Continuar con el pedido →";
-  checkoutButton.disabled = cart.length === 0;
+function cartTotal() {
+  return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 }
 
 function renderCart() {
-  const quantity = getCartQuantity();
-  const total = getCartTotal();
+  const count = itemCount();
 
-  cartCountElement.textContent = quantity;
-  cartSubtotalElement.textContent = quantity;
-  cartTotalElement.textContent = formatPrice(total);
+  document.getElementById("cart-count").textContent = count;
+  document.getElementById("drawer-count").textContent = "(" + count + ")";
 
-  if (cart.length === 0) {
-    cartItemsElement.innerHTML = `
+  if (!cart.length) {
+    itemsContainer.innerHTML = `
       <div class="empty-cart">
-        <span class="empty-cart-icon">🛒</span>
+        <div class="empty-icon">🛒</div>
         <h3>Tu carrito está vacío</h3>
-        <p>Elegí un plan y tocá “Agregar al carrito”.</p>
-        <a href="#planes" class="text-link">Ver planes disponibles →</a>
-      </div>
-    `;
+        <p>Elegí un plan para empezar tu pedido.</p>
+        <button class="button button-primary" id="browse-plans" type="button">Ver planes</button>
+      </div>`;
 
-    resetCheckoutButton();
-    return;
-  }
-
-  cartItemsElement.innerHTML = cart
-    .map(
-      (item, index) => `
-        <div class="cart-item">
-          <div class="cart-item-info">
-            <strong>${item.provider === "Claro" ? "Claro Ar" : "Personal"} · ${item.days} días</strong>
-            <small>
-              ${formatPrice(item.price)} por plan
-              ${item.quantity > 1 ? ` · Cantidad: ${item.quantity}` : ""}
-            </small>
-          </div>
-
-          <span class="cart-item-price">
-            ${formatPrice(item.price * item.quantity)}
-          </span>
-
-          <button
-            class="remove-item"
-            type="button"
-            data-remove-item="${index}"
-            aria-label="Eliminar producto"
-            title="Eliminar producto"
-          >×</button>
-        </div>
-      `
-    )
-    .join("");
-
-  cartItemsElement.querySelectorAll("[data-remove-item]").forEach((button) => {
-    button.addEventListener("click", () => {
-      removePlan(Number(button.dataset.removeItem));
+    document.getElementById("browse-plans").addEventListener("click", () => {
+      closeCart();
+      document.getElementById("planes").scrollIntoView({ behavior: "smooth" });
     });
-  });
 
-  checkoutButton.disabled = false;
-}
-
-function buildOrderMessage() {
-  const lines = cart.map((item) => {
-    const providerName =
-      item.provider === "Claro" ? "Claro Ar" : "Personal";
-
-    return (
-      `• ${providerName} - ${item.days} días` +
-      ` x${item.quantity}: ${formatPrice(item.price * item.quantity)}`
-    );
-  });
-
-  return [
-    "¡Hola, PiruNet! Quiero confirmar mi pedido.",
-    "",
-    ...lines,
-    "",
-    `Total del pedido: ${formatPrice(getCartTotal())}`,
-    "",
-    "Voy a enviar el comprobante de pago para su verificación.",
-    "Por favor, confirmen la acreditación antes de activar el servicio."
-  ].join("\n");
-}
-
-// PRIMER TOQUE: MERCADO PAGO
-// SEGUNDO TOQUE: WHATSAPP PARA CONFIRMAR
-
-checkoutButton.addEventListener("click", () => {
-  if (cart.length === 0) {
-    showToast("Agregá al menos un plan al carrito.");
+    checkout.hidden = true;
     return;
   }
 
-  if (!orderPrepared) {
-    const paymentWindow = window.open(
-      MERCADO_PAGO_URL,
-      "_blank",
-      "noopener,noreferrer"
-    );
+  checkout.hidden = false;
 
-    if (!paymentWindow) {
-      window.location.href = MERCADO_PAGO_URL;
-      return;
-    }
+  itemsContainer.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div>
+        <div class="item-title">${item.provider} · ${item.days} días</div>
+        <div class="item-meta">Internet ilimitado · ${money(item.price)} por plan</div>
+        <div class="quantity-controls">
+          <button type="button" data-action="minus" data-key="${item.key}" aria-label="Restar uno">−</button>
+          <span>${item.qty}</span>
+          <button type="button" data-action="plus" data-key="${item.key}" aria-label="Sumar uno">＋</button>
+          <button type="button" class="remove" data-action="remove" data-key="${item.key}">Eliminar</button>
+        </div>
+      </div>
+      <div class="item-price">${money(item.price * item.qty)}</div>
+    </div>
+  `).join("");
 
-    orderPrepared = true;
+  document.getElementById("cart-total").textContent = money(cartTotal());
+}
 
-    checkoutButton.textContent =
-      "Ya pagué: confirmar por WhatsApp →";
+itemsContainer.addEventListener("click", event => {
+  const button = event.target.closest("button[data-action]");
+  if (!button) return;
 
-    showToast(
-      "Abrimos Mercado Pago. Pagá el importe correspondiente al pedido."
-    );
+  const item = cart.find(entry => entry.key === button.dataset.key);
+  if (!item) return;
 
-    return;
+  if (button.dataset.action === "plus") {
+    item.qty += 1;
   }
 
-  const message = buildOrderMessage();
-  const whatsappURL =
-    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  if (button.dataset.action === "minus") {
+    item.qty -= 1;
+  }
 
-  window.open(whatsappURL, "_blank", "noopener,noreferrer");
+  if (button.dataset.action === "remove" || item.qty <= 0) {
+    cart = cart.filter(entry => entry.key !== item.key);
+  }
 
-  showToast("Enviá el mensaje y adjuntá tu comprobante de pago.");
+  renderCart();
 });
 
-// ANIMACIONES DE ENTRADA
+function getCustomer() {
+  const name = document.getElementById("customer-name").value.trim();
+  const phone = document.getElementById("customer-phone").value.trim();
 
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
+  if (!cart.length) {
+    showToast("Agregá al menos un plan al carrito.");
+    return null;
+  }
 
-  document.querySelectorAll(".reveal").forEach((element) => {
-    observer.observe(element);
-  });
+  if (!name) {
+    showToast("Ingresá tu nombre para continuar.");
+    document.getElementById("customer-name").focus();
+    return null;
+  }
+
+  if (phone.replace(/\D/g, "").length < 8) {
+    showToast("Ingresá un WhatsApp válido.");
+    document.getElementById("customer-phone").focus();
+    return null;
+  }
+
+  return { name, phone };
 }
 
-renderCart();                                
+function buildOrderMessage(customer) {
+  const lines = cart.map(item =>
+    "• " + item.provider + " — " + item.days +
+    " días x " + item.qty + ": " + money(item.price * item.qty)
+  );
+
+  return "Hola PiruNet, quiero confirmar este pedido:\n\n" +
+    lines.join("\n") +
+    "\n\nTotal del pedido: " + money(cartTotal()) +
+    "\nNombre: " + customer.name +
+    "\nMi WhatsApp: " + customer.phone +
+    "\n\nQuedo atento/a para coordinar el pago y la activación.";
+}
+
+document.getElementById("whatsapp-button").addEventListener("click", () => {
+  const customer = getCustomer();
+  if (!customer) return;
+
+  const url = "https://wa.me/" + WHATSAPP_NUMBER +
+    "?text=" + encodeURIComponent(buildOrderMessage(customer));
+
+  window.open(url, "_blank", "noopener,noreferrer");
+});
+
+document.getElementById("pay-button").addEventListener("click", () => {
+  const customer = getCustomer();
+  if (!customer) return;
+
+  // Mercado Pago abre el enlace general de PiruNet.
+  // No genera automáticamente un pago por el total del carrito.
+  try {
+    sessionStorage.setItem(
+      "pirunet_pedido_pendiente",
+      buildOrderMessage(customer)
+    );
+  } catch (error) {
+    // El carrito sigue funcionando si el navegador bloquea el almacenamiento.
+  }
+
+  window.open(MERCADO_PAGO_URL, "_blank", "noopener,noreferrer");
+
+  showToast("Mercado Pago se abrió. Confirmá el importe y enviá el pedido por WhatsApp.");
+});
+
+renderCart();
