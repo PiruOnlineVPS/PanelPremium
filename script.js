@@ -1,20 +1,5 @@
-// ==========================================
-// CONFIGURACIÓN DE PIRUNET
-// ==========================================
-
 const WHATSAPP_NUMBER = "5493844546841";
 const MERCADO_PAGO_URL = "https://link.mercadopago.com.ar/pirunet";
-
-// Precios en pesos argentinos.
-const PRICES = {
-  7: 3000,
-  15: 4500,
-  30: 6000
-};
-
-// ==========================================
-// ELEMENTOS Y ESTADO
-// ==========================================
 
 const cart = [];
 
@@ -35,10 +20,6 @@ let orderPrepared = false;
 
 document.getElementById("current-year").textContent =
   new Date().getFullYear();
-
-// ==========================================
-// UTILIDADES
-// ==========================================
 
 function formatPrice(amount) {
   return "$" + amount.toLocaleString("es-AR");
@@ -66,27 +47,20 @@ function getCartTotal() {
   );
 }
 
-// ==========================================
-// SELECCIONAR PLANES
-// ==========================================
+// SELECCIONAR UN PLAN SIN AGREGARLO AUTOMÁTICAMENTE
 
-const planOptions = document.querySelectorAll("[data-plan-option]");
-
-planOptions.forEach((option) => {
+document.querySelectorAll("[data-plan-option]").forEach((option) => {
   option.addEventListener("click", () => {
     const provider = option.dataset.provider;
     const days = Number(option.dataset.days);
     const price = Number(option.dataset.price);
 
-    selectedPlans[provider] = {
-      provider,
-      days,
-      price
-    };
+    selectedPlans[provider] = { provider, days, price };
 
-    // Marcar solamente el plan elegido de esa compañía.
     document
-      .querySelectorAll(`[data-plan-option][data-provider="${provider}"]`)
+      .querySelectorAll(
+        `[data-plan-option][data-provider="${provider}"]`
+      )
       .forEach((plan) => {
         const isSelected = plan === option;
 
@@ -94,7 +68,6 @@ planOptions.forEach((option) => {
         plan.setAttribute("aria-pressed", String(isSelected));
       });
 
-    // Habilitar el botón para agregarlo al carrito.
     const addButton = document.querySelector(
       `[data-add-provider="${provider}"]`
     );
@@ -104,7 +77,8 @@ planOptions.forEach((option) => {
     );
 
     addButton.disabled = false;
-    addButton.textContent = `Agregar ${days} días · ${formatPrice(price)}`;
+    addButton.textContent =
+      `Agregar ${days} días · ${formatPrice(price)}`;
 
     helpText.textContent =
       `Seleccionaste ${days} días por ${formatPrice(price)}.`;
@@ -113,9 +87,7 @@ planOptions.forEach((option) => {
   });
 });
 
-// ==========================================
-// AGREGAR EL PLAN SELECCIONADO AL CARRITO
-// ==========================================
+// AGREGAR AL CARRITO SOLO AL TOCAR EL BOTÓN
 
 document.querySelectorAll("[data-add-provider]").forEach((button) => {
   button.addEventListener("click", () => {
@@ -129,11 +101,12 @@ document.querySelectorAll("[data-add-provider]").forEach((button) => {
 
     addPlan(selected);
 
-    // Limpiar la selección después de agregar.
     selectedPlans[provider] = null;
 
     document
-      .querySelectorAll(`[data-plan-option][data-provider="${provider}"]`)
+      .querySelectorAll(
+        `[data-plan-option][data-provider="${provider}"]`
+      )
       .forEach((option) => {
         option.classList.remove("selected");
         option.setAttribute("aria-pressed", "false");
@@ -142,21 +115,14 @@ document.querySelectorAll("[data-add-provider]").forEach((button) => {
     button.disabled = true;
     button.textContent = "Seleccioná un plan";
 
-    const helpText = document.querySelector(
+    document.querySelector(
       `[data-selection-help="${provider}"]`
-    );
-
-    helpText.textContent = "Plan agregado. Podés elegir otro.";
-
-    showToast("¡Plan agregado al carrito!");
+    ).textContent = "Plan agregado. Podés elegir otro.";
 
     renderCart();
+    showToast("¡Plan agregado al carrito!");
   });
 });
-
-// ==========================================
-// ADMINISTRAR EL CARRITO
-// ==========================================
 
 function addPlan(plan) {
   const existingItem = cart.find(
@@ -183,8 +149,8 @@ function addPlan(plan) {
 
 function removePlan(index) {
   cart.splice(index, 1);
-
   orderPrepared = false;
+
   resetCheckoutButton();
   renderCart();
 
@@ -195,10 +161,6 @@ function resetCheckoutButton() {
   checkoutButton.textContent = "Continuar con el pedido →";
   checkoutButton.disabled = cart.length === 0;
 }
-
-// ==========================================
-// MOSTRAR EL CARRITO
-// ==========================================
 
 function renderCart() {
   const quantity = getCartQuantity();
@@ -227,7 +189,7 @@ function renderCart() {
       (item, index) => `
         <div class="cart-item">
           <div class="cart-item-info">
-            <strong>${item.provider} · ${item.days} días</strong>
+            <strong>${item.provider === "Claro" ? "Claro Ar" : "Personal"} · ${item.days} días</strong>
             <small>
               ${formatPrice(item.price)} por plan
               ${item.quantity > 1 ? ` · Cantidad: ${item.quantity}` : ""}
@@ -242,7 +204,7 @@ function renderCart() {
             class="remove-item"
             type="button"
             data-remove-item="${index}"
-            aria-label="Eliminar ${item.provider} ${item.days} días"
+            aria-label="Eliminar producto"
             title="Eliminar producto"
           >×</button>
         </div>
@@ -259,17 +221,14 @@ function renderCart() {
   checkoutButton.disabled = false;
 }
 
-// ==========================================
-// PEDIDO PARA WHATSAPP
-// ==========================================
-
 function buildOrderMessage() {
   const lines = cart.map((item) => {
-    const subtotal = item.price * item.quantity;
+    const providerName =
+      item.provider === "Claro" ? "Claro Ar" : "Personal";
 
     return (
-      `• ${item.provider} - ${item.days} días` +
-      ` x${item.quantity}: ${formatPrice(subtotal)}`
+      `• ${providerName} - ${item.days} días` +
+      ` x${item.quantity}: ${formatPrice(item.price * item.quantity)}`
     );
   });
 
@@ -285,9 +244,8 @@ function buildOrderMessage() {
   ].join("\n");
 }
 
-// ==========================================
-// MERCADO PAGO Y CONFIRMACIÓN
-// ==========================================
+// PRIMER TOQUE: MERCADO PAGO
+// SEGUNDO TOQUE: WHATSAPP PARA CONFIRMAR
 
 checkoutButton.addEventListener("click", () => {
   if (cart.length === 0) {
@@ -295,7 +253,6 @@ checkoutButton.addEventListener("click", () => {
     return;
   }
 
-  // Primer toque: abrir Mercado Pago.
   if (!orderPrepared) {
     const paymentWindow = window.open(
       MERCADO_PAGO_URL,
@@ -304,23 +261,22 @@ checkoutButton.addEventListener("click", () => {
     );
 
     if (!paymentWindow) {
-      // Si el navegador bloquea la ventana nueva, abrir el enlace actual.
       window.location.href = MERCADO_PAGO_URL;
       return;
     }
 
     orderPrepared = true;
 
-    checkoutButton.textContent = "Ya pagué: confirmar por WhatsApp →";
+    checkoutButton.textContent =
+      "Ya pagué: confirmar por WhatsApp →";
 
     showToast(
-      "Abrimos Mercado Pago. Recordá que el total debe coincidir con tu pedido."
+      "Abrimos Mercado Pago. Pagá el importe correspondiente al pedido."
     );
 
     return;
   }
 
-  // Segundo toque: preparar la confirmación por WhatsApp.
   const message = buildOrderMessage();
   const whatsappURL =
     `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -330,9 +286,7 @@ checkoutButton.addEventListener("click", () => {
   showToast("Enviá el mensaje y adjuntá tu comprobante de pago.");
 });
 
-// ==========================================
 // ANIMACIONES DE ENTRADA
-// ==========================================
 
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver(
@@ -352,8 +306,4 @@ if ("IntersectionObserver" in window) {
   });
 }
 
-// ==========================================
-// INICIAR
-// ==========================================
-
-renderCart();
+renderCart();                                
