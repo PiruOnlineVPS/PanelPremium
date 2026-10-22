@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-
 <body>
+
   <header class="topbar">
     <a class="brand" href="#inicio">
       <span class="brand-icon">P</span>
@@ -39,7 +39,7 @@
           INTERNET ILIMITADO · ARGENTINA
         </span>
 
-        <h1>Tu conexión,<br> <span class="gradient-text">a tu manera.</span></h1>
+        <h1>Tu conexión,<br><span class="gradient-text">a tu manera.</span></h1>
 
         <p class="hero-description">
           Elegí tu compañía, seleccioná un plan y hacé tu pedido.
@@ -67,12 +67,13 @@
       </div>
 
       <div class="provider-grid">
+
         <!-- PERSONAL -->
         <article class="provider-card personal-card reveal">
           <div class="provider-heading">
             <div class="provider-logo personal-logo">P</div>
-            <div>
-              <h3>Personal</h3>
+            <div class="provider-title">
+              <h3 class="personal-name">Personal</h3>
               <p>Internet ilimitado</p>
             </div>
             <span class="provider-tag">ARG</span>
@@ -117,17 +118,18 @@
             type="button" data-add-provider="Personal" disabled>
             Seleccioná un plan
           </button>
+
           <p class="selection-help" data-selection-help="Personal">
             Primero elegí la duración del plan.
           </p>
         </article>
 
-        <!-- CLARO -->
+        <!-- CLARO ARGENTINA -->
         <article class="provider-card claro-card reveal">
           <div class="provider-heading">
             <div class="provider-logo claro-logo">C</div>
-            <div>
-              <h3>Claro</h3>
+            <div class="provider-title">
+              <h3 class="claro-name">Claro Ar</h3>
               <p>Internet ilimitado</p>
             </div>
             <span class="provider-tag">ARG</span>
@@ -172,10 +174,12 @@
             type="button" data-add-provider="Claro" disabled>
             Seleccioná un plan
           </button>
+
           <p class="selection-help" data-selection-help="Claro">
             Primero elegí la duración del plan.
           </p>
         </article>
+
       </div>
     </section>
 
@@ -201,12 +205,14 @@
             <span>Productos</span>
             <strong id="cart-subtotal">0</strong>
           </div>
+
           <div class="summary-line total-line">
             <span>Total del pedido</span>
             <strong id="cart-total">$0</strong>
           </div>
 
-          <button id="checkout-button" class="btn btn-primary btn-full" type="button" disabled>
+          <button id="checkout-button" class="btn btn-primary btn-full"
+            type="button" disabled>
             Continuar con el pedido →
           </button>
 
@@ -228,7 +234,7 @@
         <article class="step-card reveal">
           <span class="step-number">01</span>
           <h3>Elegí tu plan</h3>
-          <p>Seleccioná Personal o Claro y la duración que necesitás.</p>
+          <p>Seleccioná Personal o Claro Ar y la duración que necesitás.</p>
         </article>
 
         <article class="step-card reveal">
@@ -259,4 +265,4 @@
 
   <script src="script.js"></script>
 </body>
-  </html>
+      </html>
