@@ -39,12 +39,8 @@ a {
   text-decoration: none;
 }
 
-button,
-input {
-  font: inherit;
-}
-
 button {
+  font: inherit;
   cursor: pointer;
 }
 
@@ -69,7 +65,7 @@ button:disabled {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(9, 10, 18, 0.88);
+  background: rgba(9, 10, 18, 0.9);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(18px);
 }
@@ -146,11 +142,11 @@ button:disabled {
 }
 
 .hero {
-  min-height: 440px;
+  min-height: 400px;
   display: flex;
   align-items: center;
   padding-top: 76px;
-  padding-bottom: 80px;
+  padding-bottom: 75px;
 }
 
 .hero-content {
@@ -317,26 +313,43 @@ button:disabled {
   place-items: center;
   border-radius: 15px;
   color: white;
-  font-size: 24px;
+  font-size: 29px;
+  font-family: Georgia, serif;
+  font-style: italic;
   font-weight: 900;
+  flex-shrink: 0;
 }
 
 .personal-logo {
-  background: linear-gradient(135deg, #ec424d, #9c182d);
-  box-shadow: 0 5px 20px rgba(236, 66, 77, 0.18);
+  background: linear-gradient(145deg, #37a4ff, #0754cf);
+  border: 1px solid rgba(105, 187, 255, 0.55);
+  box-shadow: 0 0 22px rgba(36, 133, 255, 0.24);
 }
 
 .claro-logo {
-  background: linear-gradient(135deg, #ed3d50, #a91535);
-  box-shadow: 0 5px 20px rgba(237, 61, 80, 0.18);
+  background: linear-gradient(145deg, #ff6476, #d5002f);
+  border: 1px solid rgba(255, 122, 145, 0.55);
+  box-shadow: 0 0 22px rgba(255, 37, 74, 0.24);
 }
 
-.provider-heading h3 {
+.provider-title h3 {
   font-size: 19px;
   line-height: 1.3;
 }
 
-.provider-heading p {
+.personal-name {
+  color: #48a6ff;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.claro-name {
+  color: #ff536b;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.provider-title p {
   font-size: 12px;
   color: var(--muted);
   margin-top: 3px;
