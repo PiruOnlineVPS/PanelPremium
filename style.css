@@ -23,7 +23,7 @@ button{cursor:pointer}
 .cart-trigger{display:flex;align-items:center;gap:9px;padding:9px 12px;background:#101a2b;border:1px solid #34445f;border-radius:11px;color:#eff7ff;font-size:12px}
 .cart-trigger svg{width:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .cart-trigger b{display:grid;place-items:center;min-width:20px;height:20px;padding:0 4px;border-radius:7px;background:#117dff;color:white;font-size:10px}
-.hero{display:grid;grid-template-columns:1.04fr .96fr;gap:35px;align-items:center;padding-top:79px;padding-bottom:88px;min-height:525px}
+.hero{display:grid;grid-template-columns:1fr;gap:0;align-items:center;padding-top:79px;padding-bottom:65px;min-height:0}
 .eyebrow{display:flex;align-items:center;gap:9px;color:#4adfff;font-size:9px;font-weight:800;letter-spacing:2px}
 .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 13px var(--green)}
 .hero h1{font-size:clamp(43px,5.1vw,65px);line-height:1.07;letter-spacing:-3.3px;margin:21px 0;font-weight:900}
@@ -37,28 +37,9 @@ button{cursor:pointer}
 .button-ghost{border:1px solid #34425b;background:#101827;color:#d6e3f5}
 .hero-benefits{display:flex;gap:22px;margin-top:25px;color:#8e9db5;font-size:10px}
 .hero-benefits i{font-style:normal;color:var(--green);margin-right:5px}
-.hero-art{height:350px;position:relative;display:grid;place-items:center}
-.ring{position:absolute;border:1px solid #1887ff4b;border-radius:50%;transform:rotate(-24deg)}
-.ring-one{width:310px;height:220px}
-.ring-two{width:365px;height:265px;transform:rotate(28deg);border-color:#00dfff3d}
-.ring-three{width:415px;height:300px;transform:rotate(-4deg);border-style:dashed;border-color:#367cff22}
-.tech-core{z-index:1;width:185px;height:185px;border:1px solid #35baff83;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(circle at 35% 25%,#173f72,#091326 68%);box-shadow:0 0 0 13px #0d58ac12,0 0 70px #007dff35}
-.wifi-icon{display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,#087bff,#00e5ed);box-shadow:0 0 28px #00aaff55;margin-bottom:12px}
-.wifi-icon svg{width:30px;fill:none;stroke:#06172a;stroke-width:1.8;stroke-linecap:round}
-.tech-core strong{font-size:21px;letter-spacing:-1px}
-.tech-core strong span{color:var(--cyan)}
-.tech-core small{font-size:7px;color:#8aa8c9;letter-spacing:1.3px;margin-top:5px}
-.spark{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 16px var(--cyan)}
-.spark-a{top:45px;right:90px}
-.spark-b{bottom:42px;left:80px;background:#397fff}
-.spark-c{top:90px;left:38px;width:5px;height:5px}
-.floating-card{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:13px;border:1px solid #36517299;background:#0c1729ed;box-shadow:0 14px 35px #0006;backdrop-filter:blur(12px)}
-.floating-card b{display:block;font-size:10px}
-.floating-card small{display:block;font-size:9px;color:#8d9db4;margin-top:3px}
-.float-a{top:27px;right:0}
-.float-b{bottom:22px;left:0}
-.float-icon{width:28px;height:28px;display:grid;place-items:center;border-radius:9px;background:#087df52e;color:#51e6ff;font-size:23px}
-.online-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+/* Círculo decorativo de la portada oculto */
+.hero-art{display:none!important}
+.ring,.ring-one,.ring-two,.ring-three,.tech-core,.wifi-icon,.spark,.floating-card{display:none!important}
 .plans{padding-top:30px;padding-bottom:84px}
 .section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;margin-bottom:28px}
 .section-heading h2{font-size:clamp(27px,3vw,36px);letter-spacing:-1.5px;line-height:1.2;margin:12px 0}
@@ -191,9 +172,9 @@ button{cursor:pointer}
 .provider:hover .provider-logo,.provider.active .provider-logo{transform:scale(1.06)}
 
 @media(max-width:850px){
-  .hero{grid-template-columns:1fr .85fr;gap:10px}
+  .hero{grid-template-columns:1fr}
   .hero h1{font-size:48px}
-  .hero-art{transform:scale(.86)}
+  .hero-art{display:none!important}
   .plan-card{padding:21px 16px}
   .price strong{font-size:31px}
   .section-heading h2{font-size:30px}
@@ -205,16 +186,11 @@ button{cursor:pointer}
   .brand-copy{font-size:20px}
   .nav{display:none}
   .cart-trigger{padding:8px 9px}
-  .hero{display:flex;flex-direction:column;align-items:stretch;gap:0;padding-top:53px;padding-bottom:52px}
+  .hero{display:flex;flex-direction:column;align-items:stretch;gap:0;padding-top:53px;padding-bottom:42px;min-height:0}
   .hero h1{font-size:clamp(42px,11vw,55px);letter-spacing:-2.5px}
   .hero-description{font-size:12px}
-  .hero-art{height:270px;transform:scale(.86);margin-top:7px;margin-bottom:-4px}
-  .ring-one{width:280px;height:195px}
-  .ring-two{width:330px;height:240px}
-  .ring-three{width:360px;height:265px}
-  .tech-core{width:160px;height:160px}
-  .float-a{right:-6px;top:10px}
-  .float-b{left:-7px;bottom:4px}
+  .hero-art{display:none!important}
+  .hero-buttons{flex-wrap:wrap}
   .hero-benefits{gap:14px;font-size:9px}
   .plans{padding-top:28px;padding-bottom:58px}
   .section-heading{display:block}
@@ -248,4 +224,4 @@ button{cursor:pointer}
   *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
   .hero-content,.hero-art,.tech-core,.ring-three,.float-a,.float-b,.plan-card{animation:none!important}
   .quick-card,.quick-card::before,.quick-arrow,.step-card,.cart-trigger,.provider-logo{transition:none!important}
-                 }
+               }
