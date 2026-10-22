@@ -4,16 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#090a12">
-  <meta name="description" content="PiruNet: planes de internet Personal y Claro, descarga de la aplicación y solicitud de prueba gratis.">
-  <title>PiruNet | Internet Ilimitado</title>
+  <meta name="description" content="PiruNet VPS: descargá la aplicación, consultá por una prueba gratis y elegí tu plan de internet Personal o Claro.">
+  <title>PiruNet VPS | Internet Ilimitado</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-<body>
 
+<body>
   <header class="topbar">
     <a class="brand" href="#inicio" aria-label="PiruNet, inicio">
       <span class="brand-icon">P</span>
@@ -34,44 +36,62 @@
   </header>
 
   <main>
+    <!-- INICIO: APLICACIÓN Y PRUEBA GRATIS -->
     <section class="hero section" id="inicio">
       <div class="hero-content">
         <div class="eyebrow">
           <span class="status-dot"></span>
-          INTERNET PARA ESTAR CONECTADO
+          PIRUNET VPS
         </div>
 
         <h1>
-          Tu conexión,<br>
-          <span class="gradient-text">a tu manera.</span>
+          Tu aplicación,<br>
+          <span class="gradient-text">a un toque.</span>
         </h1>
 
         <p class="hero-description">
-          Elegí tu plan de Personal o Claro, descargá la aplicación
-          PiruNet VPS y consultá cómo solicitar una prueba gratis.
+          Descargá la aplicación y consultá por una prueba gratis.
         </p>
 
-        
-<div class="hero-actions">
-  <a class="btn btn-primary" href="#planes">Ver planes <span aria-hidden="true">→</span></a>
+        <div class="provider-card">
+          <div class="provider-heading">
+            <div class="brand-icon">P</div>
 
-  <a class="btn btn-outline" href="https://www.mediafire.com/file/c0khzcxq5w9hg8y/PiruNet_VPS_5.0.0.apk/file" target="_blank" rel="noopener noreferrer">
-    Descargar aplicación
-  </a>
+            <div class="provider-title">
+              <h3>PiruNet VPS 5.0.0</h3>
+              <p>Aplicación para Android · Archivo APK</p>
+            </div>
+          </div>
 
-  <a class="btn btn-outline" href="https://wa.me/5493844546841?text=Hola%2C%20quiero%20solicitar%20una%20prueba%20gratis%20de%20PiruNet%20VPS." target="_blank" rel="noopener noreferrer">
-    Solicitar prueba gratis
-  </a>
-</div>
+          <div class="hero-actions">
+            <a
+              class="btn btn-primary"
+              href="https://www.mediafire.com/file/c0khzcxq5w9hg8y/PiruNet_VPS_5.0.0.apk/file"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ↓ Descargar aplicación
+            </a>
 
-        <div class="hero-features">
-          <span><span class="feature-check">✓</span> Elegí tu plan</span>
-          <span><span class="feature-check">✓</span> Atención por WhatsApp</span>
-          <span><span class="feature-check">✓</span> Solicitud de prueba</span>
+            <a
+              class="btn btn-outline"
+              href="https://wa.me/5493844546841?text=Hola%2C%20quiero%20solicitar%20una%20prueba%20gratis%20de%20PiruNet%20VPS."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Solicitar prueba gratis
+            </a>
+          </div>
+
+          <p class="selection-help">
+            La prueba se solicita por WhatsApp y está sujeta a confirmación.
+            Descargá el APK únicamente si confiás en su origen.
+          </p>
         </div>
       </div>
     </section>
 
+    <!-- PLANES DE INTERNET -->
     <section class="plans-section section" id="planes">
       <div class="section-heading">
         <span class="eyebrow">PLANES DISPONIBLES</span>
@@ -80,13 +100,16 @@
       </div>
 
       <div class="provider-grid">
+        <!-- PERSONAL -->
         <article class="provider-card">
           <div class="provider-heading">
             <div class="provider-logo personal-logo">P</div>
+
             <div class="provider-title">
               <h3 class="personal-name">Personal</h3>
               <p>Planes de internet</p>
             </div>
+
             <span class="provider-tag">PERSONAL</span>
           </div>
 
@@ -125,16 +148,20 @@
           <button class="btn btn-primary btn-add-selected" type="button" disabled>
             Agregar al carrito
           </button>
+
           <p class="selection-help">Seleccioná un plan para continuar.</p>
         </article>
 
+        <!-- CLARO -->
         <article class="provider-card">
           <div class="provider-heading">
             <div class="provider-logo claro-logo">C</div>
+
             <div class="provider-title">
               <h3 class="claro-name">Claro</h3>
               <p>Planes de internet</p>
             </div>
+
             <span class="provider-tag">CLARO</span>
           </div>
 
@@ -173,54 +200,13 @@
           <button class="btn btn-primary btn-add-selected" type="button" disabled>
             Agregar al carrito
           </button>
+
           <p class="selection-help">Seleccioná un plan para continuar.</p>
         </article>
       </div>
     </section>
 
-    <section class="plans-section section" id="aplicacion">
-      <div class="section-heading">
-        <span class="eyebrow">PIRUNET VPS</span>
-        <h2>Tu aplicación, <span class="gradient-text">a un toque.</span></h2>
-        <p>Descargá la aplicación y consultá por una prueba gratis.</p>
-      </div>
-
-      <div class="provider-card">
-        <div class="provider-heading">
-          <div class="brand-icon">P</div>
-          <div class="provider-title">
-            <h3>PiruNet VPS 5.0.0</h3>
-            <p>Aplicación para Android · Archivo APK</p>
-          </div>
-        </div>
-
-        <div class="hero-actions">
-          <a
-            class="btn btn-primary"
-            href="https://www.mediafire.com/file/c0khzcxq5w9hg8y/PiruNet_VPS_5.0.0.apk/file"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ↓ Descargar aplicación
-          </a>
-
-          <a
-            class="btn btn-outline"
-            href="https://wa.me/5493844546841?text=Hola%2C%20quiero%20solicitar%20una%20prueba%20gratis%20de%20PiruNet%20VPS."
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Solicitar prueba gratis
-          </a>
-        </div>
-
-        <p class="selection-help">
-          La prueba se solicita por WhatsApp y está sujeta a confirmación.
-          Descargá el APK únicamente si confiás en su origen.
-        </p>
-      </div>
-    </section>
-
+    <!-- CARRITO -->
     <section class="cart-section section" id="carrito">
       <div class="section-heading">
         <span class="eyebrow">TU PEDIDO</span>
@@ -243,6 +229,7 @@
             <span>Productos</span>
             <strong id="summary-quantity">0</strong>
           </div>
+
           <div class="summary-line total-line">
             <span>Total</span>
             <strong id="cart-total">$0</strong>
@@ -270,6 +257,7 @@
       </div>
     </section>
 
+    <!-- CÓMO FUNCIONA -->
     <section class="how-section section" id="como-funciona">
       <div class="section-heading">
         <span class="eyebrow">SENCILLO Y RÁPIDO</span>
@@ -293,6 +281,14 @@
           <span class="step-number">03</span>
           <h3>¿Querés probar?</h3>
           <p>Escribinos por WhatsApp para consultar por una prueba gratis de PiruNet VPS.</p>
+          <a
+            class="text-link"
+            href="https://wa.me/5493844546841?text=Hola%2C%20quiero%20solicitar%20una%20prueba%20gratis%20de%20PiruNet%20VPS."
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Solicitar prueba gratis →
+          </a>
         </article>
       </div>
     </section>
@@ -303,10 +299,12 @@
       <span class="brand-icon">P</span>
       <span>Piru<span class="brand-accent">Net</span></span>
     </a>
-    <p class="copyright">© <span id="current-year"></span> PiruNet. Todos los derechos reservados.</p>
+
+    <p class="copyright">
+      © <span id="current-year"></span> PiruNet. Todos los derechos reservados.
+    </p>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
 </body>
 </html>
