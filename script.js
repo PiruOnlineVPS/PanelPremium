@@ -1,168 +1,269 @@
-const WHATSAPP_NUMBER = "5493844546841";
+/* =================================
+   PIRUNET VPS - PERSONAL ARGENTINA
+   PRECIOS OFICIALES
+================================= */
 
-const cart = [];
-const selectedPlans = new Map();
+const PRECIOS = {
+  1: {
+    7: 3000,
+    15: 4500,
+    30: 6000,
+    60: 10000
+  },
 
-const money = amount =>
-  new Intl.NumberFormat("es-AR", {
-    style: "currency",
-    currency: "ARS",
-    maximumFractionDigits: 0
-  }).format(amount);
+  2: {
+    7: 5500,
+    15: 8000,
+    30: 11000,
+    60: 18000
+  },
 
-const cartItems = document.getElementById("cart-items");
-const cartCount = document.getElementById("cart-count");
-const cartTotal = document.getElementById("cart-total");
-const summaryQuantity = document.getElementById("summary-quantity");
-const checkoutButton = document.getElementById("checkout-button");
-const toast = document.getElementById("toast");
+  3: {
+    7: 7500,
+    15: 11000,
+    30: 15000,
+    60: 25000
+  },
 
-document.getElementById("current-year").textContent =
-  new Date().getFullYear();
+  4: {
+    7: 9000,
+    15: 13500,
+    30: 18000,
+    60: 30000
+  }
+};
 
-let toastTimeout;
+/* =================================
+   CONFIGURACIÓN
+================================= */
 
-function showToast(message) {
-  toast.textContent = message;
-  toast.classList.add("show");
+// Cambiá este número por tu WhatsApp
+// Formato internacional, sin + ni espacios.
 
-  clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => {
-    toast.classList.remove("show");
-  }, 2600);
+const WHATSAPP = "5493844546841";
+
+// Enlace de Mercado Pago
+const MERCADOPAGO = "https://link.mercadopago.com.ar/pirunet";
+
+// Selección inicial
+let dispositivosSeleccionados = 1;
+
+
+/* =================================
+   FORMATO DE PRECIOS
+================================= */
+
+function formatoPrecio(precio) {
+  return "$" + precio.toLocaleString("es-AR");
 }
 
-document.querySelectorAll(".provider-card").forEach(card => {
-  const options = card.querySelectorAll(".plan-option");
-  const addButton = card.querySelector(".btn-add-selected");
-  const help = card.querySelector(".selection-help");
 
-  options.forEach(option => {
-    option.addEventListener("click", () => {
-      options.forEach(item => item.classList.remove("selected"));
-      option.classList.add("selected");
+/* =================================
+   MOSTRAR LOS PLANES
+================================= */
 
-      addButton.disabled = false;
+function mostrarPlanes() {
 
-      selectedPlans.set(card, {
-        provider: option.dataset.provider,
-        devices: Number(option.dataset.devices || card.dataset.devices),
-        days: Number(option.dataset.days),
-        price: Number(option.dataset.price)
-      });
+  const contenedor = document.getElementById("plansGrid");
 
-      help.textContent =
-        `${option.dataset.days} días · ${option.dataset.devices} dispositivo(s) · ${money(Number(option.dataset.price))}`;
-    });
-  });
+  const duraciones = [7, 15, 30, 60];
 
-  addButton.addEventListener("click", () => {
-    const plan = selectedPlans.get(card);
+  contenedor.innerHTML = "";
 
-    if (!plan) {
-      showToast("Primero seleccioná una duración.");
-      return;
-    }
+  duraciones.forEach((dias, indice) => {
 
-    cart.push({
-      id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
-      ...plan
-    });
+    const precio = PRECIOS[dispositivosSeleccionados][dias];
 
-    renderCart();
-    showToast("Plan agregado al carrito.");
-  });
-});
+    const dispositivoTexto =
+      dispositivosSeleccionados === 1
+        ? "1 dispositivo"
+        : dispositivosSeleccionados + " dispositivos";
 
-function renderCart() {
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
+    const tarjeta = document.createElement("article");
 
-  cartCount.textContent = cart.length;
-  summaryQuantity.textContent = cart.length;
-  cartTotal.textContent = money(total);
-  checkoutButton.disabled = cart.length === 0;
-  cartItems.innerHTML = "";
+    tarjeta.className =
+      "plan-card" + (dias === 30 ? " popular" : "");
 
-  if (cart.length === 0) {
-    cartItems.innerHTML = `
-      <div class="empty-cart">
-        <div class="empty-cart-icon">🛒</div>
-        <h3>Tu carrito está vacío</h3>
-        <p>Elegí un plan de Personal para comenzar.</p>
-        <a class="text-link" href="#planes">Ver planes disponibles →</a>
-      </div>
-    `;
-    return;
-  }
+    tarjeta.innerHTML = `
 
-  cart.forEach(item => {
-    const element = document.createElement("div");
-    element.className = "cart-item";
-
-    const info = document.createElement("div");
-    info.className = "cart-item-info";
-
-    const title = document.createElement("strong");
-    title.textContent = `${item.provider} · ${item.devices} dispositivo(s)`;
-
-    const description = document.createElement("small");
-    description.textContent = `${item.days} días de servicio`;
-
-    info.append(title, description);
-
-    const price = document.createElement("span");
-    price.className = "cart-item-price";
-    price.textContent = money(item.price);
-
-    const remove = document.createElement("button");
-    remove.className = "remove-item";
-    remove.type = "button";
-    remove.textContent = "×";
-    remove.setAttribute(
-      "aria-label",
-      `Quitar plan de ${item.devices} dispositivo(s), ${item.days} días`
-    );
-
-    remove.addEventListener("click", () => {
-      const index = cart.findIndex(product => product.id === item.id);
-
-      if (index !== -1) {
-        cart.splice(index, 1);
+      ${dias === 30
+        ? '<div class="popular-label">PLAN DESTACADO</div>'
+        : ''
       }
 
-      renderCart();
-      showToast("Plan eliminado del carrito.");
-    });
+      <div class="plan-days">
+        ${dias} DÍAS
+      </div>
 
-    element.append(info, price, remove);
-    cartItems.appendChild(element);
+      <div class="plan-price">
+        ${formatoPrecio(precio)}
+      </div>
+
+      <div class="plan-period">
+        Duración de ${dias} días
+      </div>
+
+      <hr class="plan-divider">
+
+      <div class="plan-feature">
+        ${dispositivoTexto}
+      </div>
+
+      <div class="plan-feature">
+        Servicio Personal Argentina
+      </div>
+
+      <div class="plan-feature">
+        Atención por WhatsApp
+      </div>
+
+      <button class="plan-buy">
+        Elegir plan →
+      </button>
+
+    `;
+
+    tarjeta.querySelector(".plan-buy").addEventListener(
+      "click",
+      () => abrirCarrito(dias, precio)
+    );
+
+    contenedor.appendChild(tarjeta);
+
   });
+
 }
 
-checkoutButton.addEventListener("click", () => {
-  if (cart.length === 0) return;
 
-  const lines = cart.map(item =>
-    `- ${item.provider} | ${item.devices} dispositivo(s) | ${item.days} días — ${money(item.price)}`
-  );
+/* =================================
+   SELECCIÓN DE DISPOSITIVOS
+================================= */
 
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
+document.querySelectorAll(".device-btn").forEach(boton => {
 
-  const message = [
-    "Hola, quiero realizar un pedido en PiruNet VPS.",
-    "",
-    ...lines,
-    "",
-    `Cantidad de planes: ${cart.length}`,
-    `Total: ${money(total)}`,
-    "",
-    "Quiero coordinar el pago y la activación."
-  ].join("\n");
+  boton.addEventListener("click", () => {
 
-  const url =
-    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    dispositivosSeleccionados = Number(
+      boton.dataset.device
+    );
 
-  window.open(url, "_blank", "noopener,noreferrer");
+    document.querySelectorAll(".device-btn").forEach(item => {
+      item.classList.remove("active");
+    });
+
+    boton.classList.add("active");
+
+    mostrarPlanes();
+
+  });
+
 });
 
-renderCart();
+
+/* =================================
+   ABRIR CARRITO
+================================= */
+
+function abrirCarrito(dias, precio) {
+
+  const cantidad = dispositivosSeleccionados;
+
+  const textoDispositivos =
+    cantidad === 1
+      ? "1 dispositivo"
+      : cantidad + " dispositivos";
+
+  document.getElementById("cartDays").textContent =
+    dias + " días";
+
+  document.getElementById("cartDevices").textContent =
+    textoDispositivos;
+
+  document.getElementById("cartPrice").textContent =
+    formatoPrecio(precio);
+
+  // Mensaje automático de WhatsApp
+
+  const mensaje =
+    `Hola PiruNet. Quiero contratar un plan.
+
+Servicio: Personal Argentina
+Duración: ${dias} días
+Dispositivos: ${textoDispositivos}
+Total: ${formatoPrecio(precio)}
+
+Voy a realizar el pago por Mercado Pago y enviar el comprobante para su verificación.`;
+
+  const enlaceWhatsApp =
+    "https://wa.me/" +
+    WHATSAPP +
+    "?text=" +
+    encodeURIComponent(mensaje);
+
+  document.getElementById("sendOrder").href =
+    enlaceWhatsApp;
+
+  // Mostrar carrito
+
+  document.getElementById("cart").classList.add("open");
+
+  document.getElementById("cartOverlay").classList.add("open");
+
+  document.body.style.overflow = "hidden";
+
+}
+
+
+/* =================================
+   CERRAR CARRITO
+================================= */
+
+function cerrarCarrito() {
+
+  document.getElementById("cart").classList.remove("open");
+
+  document.getElementById("cartOverlay").classList.remove("open");
+
+  document.body.style.overflow = "";
+
+}
+
+document.getElementById("closeCart").addEventListener(
+  "click",
+  cerrarCarrito
+);
+
+document.getElementById("cartOverlay").addEventListener(
+  "click",
+  cerrarCarrito
+);
+
+document.addEventListener("keydown", event => {
+
+  if (event.key === "Escape") {
+    cerrarCarrito();
+  }
+
+});
+
+
+/* =================================
+   MERCADO PAGO
+================================= */
+
+document.querySelector(".checkout-btn").href = MERCADOPAGO;
+
+
+/* =================================
+   AÑO AUTOMÁTICO
+================================= */
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+
+/* =================================
+   INICIAR PÁGINA
+================================= */
+
+mostrarPlanes();
