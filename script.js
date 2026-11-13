@@ -1,78 +1,72 @@
-/* =================================
+/* =====================================
    PIRUNET VPS - PERSONAL ARGENTINA
    PRECIOS OFICIALES
-================================= */
+===================================== */
 
 const PRECIOS = {
   1: {
     7: 3000,
     15: 4500,
-    30: 6000,
-    60: 10000
+    30: 6000
   },
 
   2: {
     7: 5500,
     15: 8000,
-    30: 11000,
-    60: 18000
+    30: 11000
   },
 
   3: {
     7: 7500,
     15: 11000,
-    30: 15000,
-    60: 25000
+    30: 15000
   },
 
   4: {
     7: 9000,
     15: 13500,
-    30: 18000,
-    60: 30000
+    30: 18000
   }
 };
 
-/* =================================
-   CONFIGURACIÓN
-================================= */
 
-// Cambiá este número por tu WhatsApp
-// Formato internacional, sin + ni espacios.
+/* =====================================
+   CONFIGURACIÓN
+===================================== */
 
 const WHATSAPP = "5493844546841";
 
-// Enlace de Mercado Pago
-const MERCADOPAGO = "https://link.mercadopago.com.ar/pirunet";
+const MERCADOPAGO =
+  "https://link.mercadopago.com.ar/pirunet";
 
-// Selección inicial
 let dispositivosSeleccionados = 1;
 
 
-/* =================================
+/* =====================================
    FORMATO DE PRECIOS
-================================= */
+===================================== */
 
 function formatoPrecio(precio) {
   return "$" + precio.toLocaleString("es-AR");
 }
 
 
-/* =================================
-   MOSTRAR LOS PLANES
-================================= */
+/* =====================================
+   MOSTRAR PLANES
+===================================== */
 
 function mostrarPlanes() {
 
   const contenedor = document.getElementById("plansGrid");
 
-  const duraciones = [7, 15, 30, 60];
+  const duraciones = [7, 15, 30];
 
   contenedor.innerHTML = "";
 
-  duraciones.forEach((dias, indice) => {
+  duraciones.forEach(dias => {
 
-    const precio = PRECIOS[dispositivosSeleccionados][dias];
+    const precio =
+      PRECIOS[dispositivosSeleccionados][dias];
 
     const dispositivoTexto =
       dispositivosSeleccionados === 1
@@ -110,7 +104,7 @@ function mostrarPlanes() {
       </div>
 
       <div class="plan-feature">
-        Servicio Personal Argentina
+        Personal Argentina
       </div>
 
       <div class="plan-feature">
@@ -123,10 +117,11 @@ function mostrarPlanes() {
 
     `;
 
-    tarjeta.querySelector(".plan-buy").addEventListener(
-      "click",
-      () => abrirCarrito(dias, precio)
-    );
+    tarjeta
+      .querySelector(".plan-buy")
+      .addEventListener("click", () => {
+        abrirCarrito(dias, precio);
+      });
 
     contenedor.appendChild(tarjeta);
 
@@ -135,17 +130,16 @@ function mostrarPlanes() {
 }
 
 
-/* =================================
-   SELECCIÓN DE DISPOSITIVOS
-================================= */
+/* =====================================
+   SELECTOR DE DISPOSITIVOS
+===================================== */
 
 document.querySelectorAll(".device-btn").forEach(boton => {
 
   boton.addEventListener("click", () => {
 
-    dispositivosSeleccionados = Number(
-      boton.dataset.device
-    );
+    dispositivosSeleccionados =
+      Number(boton.dataset.device);
 
     document.querySelectorAll(".device-btn").forEach(item => {
       item.classList.remove("active");
@@ -160,9 +154,9 @@ document.querySelectorAll(".device-btn").forEach(boton => {
 });
 
 
-/* =================================
+/* =====================================
    ABRIR CARRITO
-================================= */
+===================================== */
 
 function abrirCarrito(dias, precio) {
 
@@ -182,17 +176,19 @@ function abrirCarrito(dias, precio) {
   document.getElementById("cartPrice").textContent =
     formatoPrecio(precio);
 
-  // Mensaje automático de WhatsApp
 
-  const mensaje =
-    `Hola PiruNet. Quiero contratar un plan.
+  // Crear pedido para WhatsApp
+
+  const mensaje = `
+Hola PiruNet. Quiero contratar un plan.
 
 Servicio: Personal Argentina
 Duración: ${dias} días
 Dispositivos: ${textoDispositivos}
 Total: ${formatoPrecio(precio)}
 
-Voy a realizar el pago por Mercado Pago y enviar el comprobante para su verificación.`;
+Voy a realizar el pago por Mercado Pago y enviar el comprobante para su verificación.
+  `.trim();
 
   const enlaceWhatsApp =
     "https://wa.me/" +
@@ -203,7 +199,8 @@ Voy a realizar el pago por Mercado Pago y enviar el comprobante para su verifica
   document.getElementById("sendOrder").href =
     enlaceWhatsApp;
 
-  // Mostrar carrito
+
+  // Abrir carrito
 
   document.getElementById("cart").classList.add("open");
 
@@ -214,9 +211,9 @@ Voy a realizar el pago por Mercado Pago y enviar el comprobante para su verifica
 }
 
 
-/* =================================
+/* =====================================
    CERRAR CARRITO
-================================= */
+===================================== */
 
 function cerrarCarrito() {
 
@@ -228,15 +225,11 @@ function cerrarCarrito() {
 
 }
 
-document.getElementById("closeCart").addEventListener(
-  "click",
-  cerrarCarrito
-);
+document.getElementById("closeCart")
+  .addEventListener("click", cerrarCarrito);
 
-document.getElementById("cartOverlay").addEventListener(
-  "click",
-  cerrarCarrito
-);
+document.getElementById("cartOverlay")
+  .addEventListener("click", cerrarCarrito);
 
 document.addEventListener("keydown", event => {
 
@@ -247,23 +240,24 @@ document.addEventListener("keydown", event => {
 });
 
 
-/* =================================
+/* =====================================
    MERCADO PAGO
-================================= */
+===================================== */
 
-document.querySelector(".checkout-btn").href = MERCADOPAGO;
+document.querySelector(".checkout-btn").href =
+  MERCADOPAGO;
 
 
-/* =================================
+/* =====================================
    AÑO AUTOMÁTICO
-================================= */
+===================================== */
 
 document.getElementById("year").textContent =
   new Date().getFullYear();
 
 
-/* =================================
+/* =====================================
    INICIAR PÁGINA
-================================= */
+===================================== */
 
 mostrarPlanes();
